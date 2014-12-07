@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>04DCB740-7346-4545-BD5B-FFE01EC2BF0E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ShuttleBus</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9D706CDA01D466A8EF316A1A1645565D54B1F07B</key>
+		<string>https://github.com/6vgaga/ShuttleBus.git</string>
+		<key>E0AB0490B9413709880AAC8AE7A45A8117A87714</key>
+		<string>https://github.com/6vgaga/ShuttleBusFinder.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>IOSClient/ShuttleBus/ShuttleBus.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9D706CDA01D466A8EF316A1A1645565D54B1F07B</key>
+		<string>../../../..IOSClient/ShuttleBus/ShuttleBus</string>
+		<key>E0AB0490B9413709880AAC8AE7A45A8117A87714</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/6vgaga/ShuttleBusFinder.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E0AB0490B9413709880AAC8AE7A45A8117A87714</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9D706CDA01D466A8EF316A1A1645565D54B1F07B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ShuttleBus</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E0AB0490B9413709880AAC8AE7A45A8117A87714</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ShuttleBusFinder</string>
+		</dict>
+	</array>
+</dict>
+</plist>
