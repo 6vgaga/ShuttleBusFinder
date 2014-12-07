@@ -234,6 +234,49 @@
             </objects>
             <point key="canvasLocation" x="540" y="681"/>
         </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="A0y-nf-kkP">
+            <objects>
+                <viewController id="j4D-n8-nPd" userLabel="Setting View Controller" customClass="SettingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rxy-NH-7zG"/>
+                        <viewControllerLayoutGuide type="bottom" id="8uU-cg-JpP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gMh-UJ-VwV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Shuttle Bus" id="G1l-Gm-ih9">
+                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="2Xm-ZR-fll">
+                            <connections>
+                                <action selector="showLeftMenu:" destination="j4D-n8-nPd" id="Rui-on-M3m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kT9-0N-uIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="963" y="1300"/>
+        </scene>
+        <!--Setting Navigation Controller-->
+        <scene sceneID="dwe-iU-OGI">
+            <objects>
+                <navigationController storyboardIdentifier="SettingNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pIy-a4-Apn" userLabel="Setting Navigation Controller" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fXT-sb-oxc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="j4D-n8-nPd" kind="relationship" relationship="rootViewController" id="XSv-I5-oBq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vBm-8r-osx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="540" y="1300"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bgMain.jpg" width="640" height="960"/>

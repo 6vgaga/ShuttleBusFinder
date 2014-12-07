@@ -89,6 +89,7 @@
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 4", @"")},
                        ],*/
                    @[
+                       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Setting", @"")},
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Logout", @"")},
                        ],
                    ];
@@ -104,6 +105,7 @@
                          [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
                          ],*/
                      @[
+                         [self.storyboard instantiateViewControllerWithIdentifier:@"SettingNavigationController"],
                          @"logout",
                          ],
                      ];

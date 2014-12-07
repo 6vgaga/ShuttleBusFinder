@@ -48,6 +48,7 @@
 		01B784031A22407900DCA563 /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B784021A22407900DCA563 /* bus.png */; };
 		01B784051A2240C600DCA563 /* mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B784041A2240C600DCA563 /* mark.png */; };
 		01B7840B1A23900E00DCA563 /* BusLocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B7840A1A23900E00DCA563 /* BusLocationInfo.m */; };
+		01B850861A34D190008A2DF2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B850851A34D190008A2DF2 /* SettingViewController.m */; };
 		A89C6ED2DBF0583B1BBF251F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC31B6BC42E7EDFE6D0C3D5B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,8 @@
 		01B784041A2240C600DCA563 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark.png; sourceTree = "<group>"; };
 		01B784091A23900E00DCA563 /* BusLocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusLocationInfo.h; path = BusLineData/BusLocationInfo.h; sourceTree = "<group>"; };
 		01B7840A1A23900E00DCA563 /* BusLocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusLocationInfo.m; path = BusLineData/BusLocationInfo.m; sourceTree = "<group>"; };
+		01B850841A34D190008A2DF2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		01B850851A34D190008A2DF2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		5BD4E70DCD06908DA5964202 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		824A66AC80967CE1ACD17EA6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EC31B6BC42E7EDFE6D0C3D5B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +207,8 @@
 				002F2204199FB29600EE889C /* HomeViewController.m */,
 				002F2209199FBC9D00EE889C /* ShuttleBusViewController.h */,
 				002F220A199FBC9D00EE889C /* ShuttleBusViewController.m */,
+				01B850841A34D190008A2DF2 /* SettingViewController.h */,
+				01B850851A34D190008A2DF2 /* SettingViewController.m */,
 				002F2206199FB54000EE889C /* SideMenuUtil.h */,
 				002F2207199FB54000EE889C /* SideMenuUtil.m */,
 				002F221519A09B7F00EE889C /* MarkPoint.h */,
@@ -467,6 +472,7 @@
 			files = (
 				002F221719A09B7F00EE889C /* MarkPoint.m in Sources */,
 				002F21F7199F137E00EE889C /* GHSidebarSearchViewController.m in Sources */,
+				01B850861A34D190008A2DF2 /* SettingViewController.m in Sources */,
 				01B783EF1A219E9300DCA563 /* BusScheduleStopInfo.m in Sources */,
 				002F2208199FB54000EE889C /* SideMenuUtil.m in Sources */,
 				002F21F6199F137E00EE889C /* GHRevealViewController.m in Sources */,
