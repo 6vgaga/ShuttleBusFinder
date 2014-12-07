@@ -28,5 +28,6 @@
 @property (assign, nonatomic) float longitudeValue;
 @property (assign, nonatomic) float latitudeValue;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *workOrHomeSegment;
+@property (weak, nonatomic) IBOutlet UILabel *busInfoLabel;
 
 @end

@@ -59,6 +59,8 @@
     {
         [self getBusScheduleLocation];
         [self goToBusScheduleLocation];
+        [self displayBusInfo];
+        self.navigationItem.title = self.lineName;
     }
 }
 
@@ -109,6 +111,12 @@
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, meters * 1.4, meters * 1.4);
         [self.mapView setRegion:region animated:YES];
     }
+}
+
+- (void)displayBusInfo
+{
+    self.busInfo = [BusLineOperator getBusInfo:self.lineName];
+    self.busInfoLabel.text = [NSString stringWithFormat:@"(%d seats) (%@ %@: %@)", self.busInfo.seatCount, self.busInfo.license, self.busInfo.driver, self.busInfo.phone];
 }
 
 - (void)didReceiveMemoryWarning
