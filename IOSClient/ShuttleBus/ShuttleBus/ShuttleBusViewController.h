@@ -11,6 +11,11 @@
 #import <MapKit/MapKit.h>
 
 @interface ShuttleBusViewController : UIViewController <IRevealControllerProperty, CLLocationManagerDelegate,MKMapViewDelegate>
+{
+    NSString* lineName;
+}
+
+@property NSString* lineName;
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 

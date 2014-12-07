@@ -9,6 +9,9 @@
 #import "MenuListViewController.h"
 #import "SideMenuUtil.h"
 #import "MenuListCell.h"
+#import "BusLineOperator.h"
+#import "BusInfo.h"
+#import "ShuttleBusViewController.h"
 
 #define kSidebarCellTextKey	@"CellText"
 #define kSidebarCellImageKey	@"CellImage"
@@ -53,6 +56,21 @@
         revealController.contentViewController = homeNC;
     }
     
+    // 获取班车数量
+    NSArray* busLineArray = [BusLineOperator getAllBusInfo];
+    NSMutableArray* busLineInfoCell = [[NSMutableArray alloc] init];
+    NSMutableArray* busLineControllers = [[NSMutableArray alloc] init];
+    for (BusInfo* info in busLineArray) {
+        NSMutableDictionary* tempDic = [[NSMutableDictionary alloc] init];
+        [tempDic setValue:[UIImage imageNamed:@"user.png"] forKey:kSidebarCellImageKey];
+        [tempDic setValue:NSLocalizedString(info.lineName, @"") forKey:kSidebarCellTextKey];
+        [busLineInfoCell addObject:tempDic];
+        UINavigationController* navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"];
+        ShuttleBusViewController* controller = (ShuttleBusViewController*)[navigationController topViewController];
+        controller.lineName = info.lineName;
+        [busLineControllers addObject:navigationController];
+    }
+    
     // 初始化表格.
     _headers = @[
                  [NSNull null],
@@ -63,12 +81,13 @@
                    @[
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Home", @"")},
                        ],
-                   @[
+                        busLineInfoCell,
+                   /*@[
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 1", @"")},
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 2", @"")},
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 3", @"")},
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 4", @"")},
-                       ],
+                       ],*/
                    @[
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Logout", @"")},
                        ],
@@ -77,12 +96,13 @@
                      @[
                          [self.storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"],
                          ],
-                     @[
+                        busLineControllers,
+                     /*@[
                          [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
                          [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
                          [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
                          [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
-                         ],
+                         ],*/
                      @[
                          @"logout",
                          ],

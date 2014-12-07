@@ -15,6 +15,7 @@
 
 @implementation ShuttleBusViewController
 
+@synthesize lineName;
 @synthesize revealController;
 @synthesize mapView;
 @synthesize longitudeValue;
