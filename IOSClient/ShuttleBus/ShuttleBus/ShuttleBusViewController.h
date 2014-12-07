@@ -10,16 +10,23 @@
 #import "IRevealControllerProperty.h"
 #import <MapKit/MapKit.h>
 
+@class BusInfo;
+
 @interface ShuttleBusViewController : UIViewController <IRevealControllerProperty, CLLocationManagerDelegate,MKMapViewDelegate>
 {
     NSString* lineName;
+    NSArray* busScheduleArray;
+    BusInfo* busInfo;
 }
 
 @property NSString* lineName;
+@property NSArray* busScheduleArray;
+@property BusInfo* busInfo;
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 
 @property (assign, nonatomic) float longitudeValue;
 @property (assign, nonatomic) float latitudeValue;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *workOrHomeSegment;
 
 @end

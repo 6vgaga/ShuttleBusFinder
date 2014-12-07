@@ -148,7 +148,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="markYourPosition:" destination="0YB-Rg-nGN" eventType="touchUpInside" id="cBQ-ji-ZI5"/>
+                                    <action selector="personLocation:" destination="0YB-Rg-nGN" eventType="touchUpInside" id="9KS-io-Ney"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTK-oN-vos">
@@ -157,7 +157,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="markYourPosition:" destination="0YB-Rg-nGN" eventType="touchUpInside" id="ot8-eO-YXZ"/>
+                                    <action selector="busLocation:" destination="0YB-Rg-nGN" eventType="touchUpInside" id="hN2-Br-xs3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BusInfo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EhU-eo-qjP">
@@ -172,6 +172,9 @@
                                     <segment title="To Work"/>
                                     <segment title="Back Home"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeWorkOrHome:" destination="0YB-Rg-nGN" eventType="valueChanged" id="Yc3-ea-uHN"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -185,6 +188,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="hJv-r1-2F0" id="Di7-Zh-svK"/>
+                        <outlet property="workOrHomeSegment" destination="7X8-S8-XZ4" id="Vv1-nv-dZo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihP-G1-0sf" userLabel="First Responder" sceneMemberID="firstResponder"/>
