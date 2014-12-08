@@ -33,7 +33,7 @@
         self.serverURL=dataStore.clientSetting.serverIPPort;
     }
     
-    if (_serverURL.length<1) _serverURL=[NSString stringWithFormat:@"192.168.0.12:8080"];
+    if (_serverURL.length<1) _serverURL=[NSString stringWithFormat:@"123.57.45.71:8080"];
     
     return _serverURL;
 }

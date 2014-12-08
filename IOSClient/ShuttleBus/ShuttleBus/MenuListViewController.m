@@ -9,17 +9,15 @@
 #import "MenuListViewController.h"
 #import "SideMenuUtil.h"
 #import "MenuListCell.h"
-#import "BusLineOperator.h"
-#import "BusInfo.h"
 #import "ShuttleBusViewController.h"
 
 #define kSidebarCellTextKey	@"CellText"
 #define kSidebarCellImageKey	@"CellImage"
 
 @interface MenuListViewController () {
-	NSArray *_headers;	//!< 节头文本.
-	NSArray *_cellInfos;	//!< 单元格信息.
-	NSArray *_controllers;	//!< 导航控制器集.
+	NSMutableArray *_headers;	//!< 节头文本.
+	NSMutableArray *_cellInfos;	//!< 单元格信息.
+	NSMutableArray *_controllers;	//!< 导航控制器集.
 }
 
 @end
@@ -57,7 +55,7 @@
     }
     
     // 获取班车数量
-    NSArray* busLineArray = [BusLineOperator getAllBusInfo];
+    /*NSArray* busLineArray = [BusLineOperator getAllBusInfo];
     NSMutableArray* busLineInfoCell = [[NSMutableArray alloc] init];
     NSMutableArray* busLineControllers = [[NSMutableArray alloc] init];
     for (BusInfo* info in busLineArray) {
@@ -69,10 +67,10 @@
         ShuttleBusViewController* controller = (ShuttleBusViewController*)[navigationController topViewController];
         controller.lineName = info.lineName;
         [busLineControllers addObject:navigationController];
-    }
+    }*/
     
     // 初始化表格.
-    _headers = @[
+    /*_headers = @[
                  [NSNull null],
                  @"",
                  @"",
@@ -82,12 +80,6 @@
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Home", @"")},
                        ],
                         busLineInfoCell,
-                   /*@[
-                       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 1", @"")},
-                       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 2", @"")},
-                       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 3", @"")},
-                       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Line 4", @"")},
-                       ],*/
                    @[
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Setting", @"")},
                        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Logout", @"")},
@@ -98,17 +90,82 @@
                          [self.storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"],
                          ],
                         busLineControllers,
-                     /*@[
-                         [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
-                         [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
-                         [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
-                         [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"],
-                         ],*/
                      @[
                          [self.storyboard instantiateViewControllerWithIdentifier:@"SettingNavigationController"],
                          @"logout",
                          ],
-                     ];
+                     ];*/
+    
+    // 添加手势.
+    /*for (id obj1 in _controllers) {
+        if (nil==obj1) continue;
+        for (id obj2 in (NSArray *)obj1) {
+            if (nil==obj2) continue;
+            [SideMenuUtil setRevealControllerProperty:obj2 revealController:revealController];
+            if ([obj2 isKindOfClass:UINavigationController.class]) {
+                [SideMenuUtil addNavigationGesture:(UINavigationController*)obj2 revealController:revealController];
+            }
+        }
+    }*/
+    
+    // ui.
+    /*UIColor *bgColor = [UIColor colorWithRed:(50.0f/255.0f) green:(57.0f/255.0f) blue:(74.0f/255.0f) alpha:1.0f];
+    self.view.backgroundColor = bgColor;
+    self.menuTableView.delegate = self;
+    self.menuTableView.dataSource = self;
+    self.menuTableView.backgroundColor = [UIColor clearColor];
+    [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];*/
+    // 初始化表格.
+    _headers =[[NSMutableArray alloc] init];
+    _cellInfos = [[NSMutableArray alloc] init];
+    _controllers = [[NSMutableArray alloc] init];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(refreshMenu)
+     name:@"ServerIPChangeMsg"//表示消息名称，发送跟接收双方都要一致
+     object:nil];
+    
+    
+    [self refreshMenu];
+}
+
+- (void) refreshMenu {
+    
+    [_headers removeAllObjects];
+    [_cellInfos removeAllObjects];
+    [_controllers removeAllObjects];
+    
+    
+    [_headers addObject:
+     [NSNull null]
+     ];
+    
+    [_cellInfos addObject:
+     @[
+       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Home", @"")},
+       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Logout", @"")},
+       ]
+     ];
+    
+    [_controllers addObject:
+     
+     @[
+       [self.storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"], @"logout",
+       ]
+     ];
+    
+    
+    UIColor *bgColor = [UIColor colorWithRed:(50.0f/255.0f) green:(57.0f/255.0f) blue:(74.0f/255.0f) alpha:1.0f];
+    self.view.backgroundColor = bgColor;
+    self.menuTableView.delegate = self;
+    self.menuTableView.dataSource = self;
+    self.menuTableView.backgroundColor = [UIColor clearColor];
+    
+    
+    
+    [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    
     
     // 添加手势.
     for (id obj1 in _controllers) {
@@ -122,13 +179,130 @@
         }
     }
     
-    // ui.
+    [self.menuTableView reloadData];
+    
+    
+    //[lineLoadingIcon startAnimating];
+    
+    void (^callbackFun) (NSArray*,bool)= ^ (NSArray* arrayObject,bool isError) {
+        if (isError) {
+            NSLog(@"failed to query location, err=%@",arrayObject.firstObject);
+        }
+        else
+            [self fillBusLinesInfo: arrayObject];
+    };
+    RestRequestor* requstor= [[RestRequestor alloc]init];
+    [requstor getAllBusline:callbackFun];
+    
+}
+- (void) reportError:(NSString *)errorMsg {
+    NSLog(@"REST API call failed, error=%@",errorMsg);
+}
+
+- (void) fillBusLinesInfo: (NSArray*) arrayObject {
+    
+    [_headers removeAllObjects];
+    [_cellInfos removeAllObjects];
+    [_controllers removeAllObjects];
+    
+    
+    [_headers addObject:
+     [NSNull null]
+     ];
+    
+    [_cellInfos addObject:
+     @[
+       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Home", @"")},
+       ]
+     ];
+    
+    [_controllers addObject:
+     
+     @[
+       [self.storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"],
+       ]
+     ];
+    
+    
+    
     UIColor *bgColor = [UIColor colorWithRed:(50.0f/255.0f) green:(57.0f/255.0f) blue:(74.0f/255.0f) alpha:1.0f];
     self.view.backgroundColor = bgColor;
     self.menuTableView.delegate = self;
     self.menuTableView.dataSource = self;
     self.menuTableView.backgroundColor = [UIColor clearColor];
+    
+    
+    
     [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    
+    
+    
+    
+    
+    if (arrayObject.count==0) {
+        NSLog(@"can't find any ShuttleBus line info from Server!!!");
+        return;
+    }
+    
+    
+    
+    
+    [_headers addObject:@""];
+    [_headers addObject:@""];
+    
+    NSMutableArray* infoArray = [[NSMutableArray alloc]init];
+    NSMutableArray* ctlArray= [[NSMutableArray alloc]init];
+    
+    for ( BusInfo* busline in arrayObject) {
+        
+        [infoArray addObject:
+         @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(busline->busLine, @"")}
+         ];
+        
+        [ctlArray addObject:
+         [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"]
+         ];
+    }
+    
+    [_cellInfos addObject:infoArray];
+    [_cellInfos addObject:
+     @[
+       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Logout", @"")},
+       ]
+     ];
+    
+    [_controllers addObject:ctlArray];
+    [_controllers addObject:
+     @[
+       @"logout",
+       ]
+     ];
+    
+    
+    // 添加手势.
+    for (id obj1 in _controllers) {
+        if (nil==obj1) continue;
+        for (id obj2 in (NSArray *)obj1) {
+            if (nil==obj2) continue;
+            [SideMenuUtil setRevealControllerProperty:obj2 revealController:revealController];
+            if ([obj2 isKindOfClass:UINavigationController.class]) {
+                [SideMenuUtil addNavigationGesture:(UINavigationController*)obj2 revealController:revealController];
+            }
+        }
+    }
+    
+    //refresh UITable
+    [self.menuTableView reloadData];
+    //[lineLoadingIcon stopAnimating];
+}
+
+//implement Async
+
+-(NSInteger) getReturnedObjectArray: (NSArray*) objectArray {
+    
+    [self fillBusLinesInfo:objectArray];
+    
+    return objectArray.count;
 }
 
 - (void)didReceiveMemoryWarning

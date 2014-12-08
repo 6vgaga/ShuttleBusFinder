@@ -8,9 +8,9 @@
 
 #import "ShuttleBusViewController.h"
 #import "MarkPoint.h"
-#import "BusLineOperator.h"
-#import "BusInfo.h"
-#import "BusScheduleStopInfo.h"
+//#import "BusLineOperator.h"
+//#import "BusInfo.h"
+//#import "BusScheduleStopInfo.h"
 
 @interface ShuttleBusViewController ()
 
@@ -75,7 +75,7 @@
     {
         isMorning = false;
     }
-    self.busScheduleArray = [BusLineOperator getBusLineSchedule:self.lineName morningOrNight:isMorning];
+/*    self.busScheduleArray = [BusLineOperator getBusLineSchedule:self.lineName morningOrNight:isMorning];
     
     [self.mapView removeAnnotations:[self.mapView annotations]];
     
@@ -88,14 +88,14 @@
         MarkPoint *markPoint = [[MarkPoint alloc] initWithCoordinate:coord andTitle:titile];
         //添加标注
         [self.mapView addAnnotation:markPoint];
-    }
+    }*/
 }
 
 - (void)goToBusScheduleLocation
 {
     if (self.busScheduleArray != nil && self.busScheduleArray.count > 0)
     {
-        BusScheduleStopInfo* startInfo = [self.busScheduleArray objectAtIndex:0];
+        /*BusScheduleStopInfo* startInfo = [self.busScheduleArray objectAtIndex:0];
         BusScheduleStopInfo* endInfo = [self.busScheduleArray lastObject];
         double centerLatitude = (startInfo.latitude + endInfo.latitude)/2.0;
         double centerLongitude = (startInfo.longitude + endInfo.longitude)/2.0;
@@ -109,14 +109,14 @@
         
         CLLocationCoordinate2D loc = [centerLoc coordinate];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, meters * 1.4, meters * 1.4);
-        [self.mapView setRegion:region animated:YES];
+        [self.mapView setRegion:region animated:YES];*/
     }
 }
 
 - (void)displayBusInfo
 {
-    self.busInfo = [BusLineOperator getBusInfo:self.lineName];
-    self.busInfoLabel.text = [NSString stringWithFormat:@"(%d seats) (%@ %@: %@)", self.busInfo.seatCount, self.busInfo.license, self.busInfo.driver, self.busInfo.phone];
+/*    self.busInfo = [BusLineOperator getBusInfo:self.lineName];
+    self.busInfoLabel.text = [NSString stringWithFormat:@"(%d seats) (%@ %@: %@)", self.busInfo.seatCount, self.busInfo.license, self.busInfo.driver, self.busInfo.phone];*/
 }
 
 - (void)didReceiveMemoryWarning

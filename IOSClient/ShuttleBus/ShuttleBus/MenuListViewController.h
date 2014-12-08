@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "IRevealControllerProperty.h"
+#import "RestRequestor.h"
 
-@interface MenuListViewController : UIViewController <IRevealControllerProperty, UITableViewDataSource, UITableViewDelegate>
+@interface MenuListViewController : UIViewController <IRevealControllerProperty, UITableViewDataSource, UITableViewDelegate, AsynCallCompletionNotify>
 
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 

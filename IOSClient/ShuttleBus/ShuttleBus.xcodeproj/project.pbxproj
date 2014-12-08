@@ -37,17 +37,16 @@
 		002F221019A0767B00EE889C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F220F19A0767B00EE889C /* MapKit.framework */; };
 		002F221419A08D7C00EE889C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002F221319A08D7C00EE889C /* CoreLocation.framework */; };
 		002F221719A09B7F00EE889C /* MarkPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 002F221619A09B7F00EE889C /* MarkPoint.m */; };
-		01B783EC1A219CC400DCA563 /* BusLineOperator.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B783EB1A219CC400DCA563 /* BusLineOperator.m */; };
-		01B783EF1A219E9300DCA563 /* BusScheduleStopInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B783EE1A219E9300DCA563 /* BusScheduleStopInfo.m */; };
-		01B783F31A21AC5600DCA563 /* TestBusSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B783F21A21AC5600DCA563 /* TestBusSchedule.m */; };
-		01B783F91A21D01E00DCA563 /* BusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B783F81A21D01E00DCA563 /* BusInfo.m */; };
+		0138A9811A360F440010FF87 /* ClientSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A9791A360F440010FF87 /* ClientSetting.m */; };
+		0138A9821A360F440010FF87 /* RestRequestor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A97C1A360F440010FF87 /* RestRequestor.m */; };
+		0138A9831A360F440010FF87 /* ShareObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A97E1A360F440010FF87 /* ShareObject.m */; };
+		0138A9841A360F440010FF87 /* ShuttleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A9801A360F440010FF87 /* ShuttleAPI.m */; };
 		01B783FC1A223C3B00DCA563 /* evening.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B783FA1A223C3B00DCA563 /* evening.png */; };
 		01B783FD1A223C3B00DCA563 /* morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B783FB1A223C3B00DCA563 /* morning.png */; };
 		01B783FF1A223CEC00DCA563 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B783FE1A223CEC00DCA563 /* icon.png */; };
 		01B784011A22406900DCA563 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B784001A22406900DCA563 /* person.png */; };
 		01B784031A22407900DCA563 /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B784021A22407900DCA563 /* bus.png */; };
 		01B784051A2240C600DCA563 /* mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B784041A2240C600DCA563 /* mark.png */; };
-		01B7840B1A23900E00DCA563 /* BusLocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B7840A1A23900E00DCA563 /* BusLocationInfo.m */; };
 		01B850861A34D190008A2DF2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B850851A34D190008A2DF2 /* SettingViewController.m */; };
 		A89C6ED2DBF0583B1BBF251F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC31B6BC42E7EDFE6D0C3D5B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -108,22 +107,20 @@
 		002F221319A08D7C00EE889C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		002F221519A09B7F00EE889C /* MarkPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkPoint.h; sourceTree = "<group>"; };
 		002F221619A09B7F00EE889C /* MarkPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkPoint.m; sourceTree = "<group>"; };
-		01B783EA1A219CC400DCA563 /* BusLineOperator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusLineOperator.h; path = BusLineTools/BusLineOperator.h; sourceTree = "<group>"; };
-		01B783EB1A219CC400DCA563 /* BusLineOperator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusLineOperator.m; path = BusLineTools/BusLineOperator.m; sourceTree = "<group>"; };
-		01B783ED1A219E9300DCA563 /* BusScheduleStopInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusScheduleStopInfo.h; path = BusLineData/BusScheduleStopInfo.h; sourceTree = "<group>"; };
-		01B783EE1A219E9300DCA563 /* BusScheduleStopInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusScheduleStopInfo.m; path = BusLineData/BusScheduleStopInfo.m; sourceTree = "<group>"; };
-		01B783F11A21AC5600DCA563 /* TestBusSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBusSchedule.h; path = TestFile/TestBusSchedule.h; sourceTree = "<group>"; };
-		01B783F21A21AC5600DCA563 /* TestBusSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestBusSchedule.m; path = TestFile/TestBusSchedule.m; sourceTree = "<group>"; };
-		01B783F71A21D01E00DCA563 /* BusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusInfo.h; path = BusLineData/BusInfo.h; sourceTree = "<group>"; };
-		01B783F81A21D01E00DCA563 /* BusInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusInfo.m; path = BusLineData/BusInfo.m; sourceTree = "<group>"; };
+		0138A9781A360F440010FF87 /* ClientSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientSetting.h; sourceTree = "<group>"; };
+		0138A9791A360F440010FF87 /* ClientSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClientSetting.m; sourceTree = "<group>"; };
+		0138A97B1A360F440010FF87 /* RestRequestor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestRequestor.h; sourceTree = "<group>"; };
+		0138A97C1A360F440010FF87 /* RestRequestor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestRequestor.m; sourceTree = "<group>"; };
+		0138A97D1A360F440010FF87 /* ShareObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareObject.h; sourceTree = "<group>"; };
+		0138A97E1A360F440010FF87 /* ShareObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareObject.m; sourceTree = "<group>"; };
+		0138A97F1A360F440010FF87 /* ShuttleAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleAPI.h; sourceTree = "<group>"; };
+		0138A9801A360F440010FF87 /* ShuttleAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleAPI.m; sourceTree = "<group>"; };
 		01B783FA1A223C3B00DCA563 /* evening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evening.png; sourceTree = "<group>"; };
 		01B783FB1A223C3B00DCA563 /* morning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = morning.png; sourceTree = "<group>"; };
 		01B783FE1A223CEC00DCA563 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		01B784001A22406900DCA563 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
 		01B784021A22407900DCA563 /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
 		01B784041A2240C600DCA563 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark.png; sourceTree = "<group>"; };
-		01B784091A23900E00DCA563 /* BusLocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BusLocationInfo.h; path = BusLineData/BusLocationInfo.h; sourceTree = "<group>"; };
-		01B7840A1A23900E00DCA563 /* BusLocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BusLocationInfo.m; path = BusLineData/BusLocationInfo.m; sourceTree = "<group>"; };
 		01B850841A34D190008A2DF2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		01B850851A34D190008A2DF2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		5BD4E70DCD06908DA5964202 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,9 +158,8 @@
 		002F21A9199F031B00EE889C = {
 			isa = PBXGroup;
 			children = (
-				01B783F01A219E9D00DCA563 /* BusLineData */,
-				01B783E91A219C7600DCA563 /* BusLineTools */,
-				01B783E81A219BCF00DCA563 /* TestFile */,
+				0138A9771A360F440010FF87 /* CoreData */,
+				0138A97A1A360F440010FF87 /* ShareObj */,
 				002F21EA199F137E00EE889C /* GHSidebarNav */,
 				002F21BB199F031B00EE889C /* ShuttleBus */,
 				002F21DA199F031B00EE889C /* ShuttleBusTests */,
@@ -286,35 +282,26 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		01B783E81A219BCF00DCA563 /* TestFile */ = {
+		0138A9771A360F440010FF87 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				01B783F11A21AC5600DCA563 /* TestBusSchedule.h */,
-				01B783F21A21AC5600DCA563 /* TestBusSchedule.m */,
+				0138A9781A360F440010FF87 /* ClientSetting.h */,
+				0138A9791A360F440010FF87 /* ClientSetting.m */,
 			);
-			name = TestFile;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
-		01B783E91A219C7600DCA563 /* BusLineTools */ = {
+		0138A97A1A360F440010FF87 /* ShareObj */ = {
 			isa = PBXGroup;
 			children = (
-				01B783EA1A219CC400DCA563 /* BusLineOperator.h */,
-				01B783EB1A219CC400DCA563 /* BusLineOperator.m */,
+				0138A97B1A360F440010FF87 /* RestRequestor.h */,
+				0138A97C1A360F440010FF87 /* RestRequestor.m */,
+				0138A97D1A360F440010FF87 /* ShareObject.h */,
+				0138A97E1A360F440010FF87 /* ShareObject.m */,
+				0138A97F1A360F440010FF87 /* ShuttleAPI.h */,
+				0138A9801A360F440010FF87 /* ShuttleAPI.m */,
 			);
-			name = BusLineTools;
-			sourceTree = "<group>";
-		};
-		01B783F01A219E9D00DCA563 /* BusLineData */ = {
-			isa = PBXGroup;
-			children = (
-				01B783ED1A219E9300DCA563 /* BusScheduleStopInfo.h */,
-				01B783EE1A219E9300DCA563 /* BusScheduleStopInfo.m */,
-				01B783F71A21D01E00DCA563 /* BusInfo.h */,
-				01B783F81A21D01E00DCA563 /* BusInfo.m */,
-				01B784091A23900E00DCA563 /* BusLocationInfo.h */,
-				01B7840A1A23900E00DCA563 /* BusLocationInfo.m */,
-			);
-			name = BusLineData;
+			path = ShareObj;
 			sourceTree = "<group>";
 		};
 		956FC9BA247E91EB224BF21D /* Pods */ = {
@@ -473,20 +460,19 @@
 				002F221719A09B7F00EE889C /* MarkPoint.m in Sources */,
 				002F21F7199F137E00EE889C /* GHSidebarSearchViewController.m in Sources */,
 				01B850861A34D190008A2DF2 /* SettingViewController.m in Sources */,
-				01B783EF1A219E9300DCA563 /* BusScheduleStopInfo.m in Sources */,
 				002F2208199FB54000EE889C /* SideMenuUtil.m in Sources */,
 				002F21F6199F137E00EE889C /* GHRevealViewController.m in Sources */,
-				01B783F31A21AC5600DCA563 /* TestBusSchedule.m in Sources */,
 				002F21CC199F031B00EE889C /* ViewController.m in Sources */,
+				0138A9831A360F440010FF87 /* ShareObject.m in Sources */,
 				002F2202199FA7C500EE889C /* MenuListViewController.m in Sources */,
-				01B783EC1A219CC400DCA563 /* BusLineOperator.m in Sources */,
 				002F220B199FBC9D00EE889C /* ShuttleBusViewController.m in Sources */,
-				01B783F91A21D01E00DCA563 /* BusInfo.m in Sources */,
-				01B7840B1A23900E00DCA563 /* BusLocationInfo.m in Sources */,
+				0138A9821A360F440010FF87 /* RestRequestor.m in Sources */,
+				0138A9841A360F440010FF87 /* ShuttleAPI.m in Sources */,
 				002F21C6199F031B00EE889C /* AppDelegate.m in Sources */,
 				002F2205199FB29600EE889C /* HomeViewController.m in Sources */,
 				002F220E199FBFCA00EE889C /* MenuListCell.m in Sources */,
 				002F21C2199F031B00EE889C /* main.m in Sources */,
+				0138A9811A360F440010FF87 /* ClientSetting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
