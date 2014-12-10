@@ -8,9 +8,8 @@
 
 #import "ShuttleBusViewController.h"
 #import "MarkPoint.h"
-//#import "BusLineOperator.h"
-//#import "BusInfo.h"
-//#import "BusScheduleStopInfo.h"
+#import "BusLocationAnnotation.h"
+#import "MyLocationAnnotation.h"
 
 @interface ShuttleBusViewController ()
 
@@ -187,6 +186,40 @@
     //[self.mapView setRegion:region animated:YES];
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    if ([annotation isKindOfClass:[MyLocationAnnotation class]]) {
+        // try to dequeue an existing pin view first
+        static NSString* myAnnotationIdentifier = @"MyAnnotationIdentifier";
+        MKPinAnnotationView* pinView = (MKPinAnnotationView *)
+        [mapView dequeueReusableAnnotationViewWithIdentifier:myAnnotationIdentifier];
+        if (!pinView)
+        {
+            // if an existing pin view was not available, create one
+            MKAnnotationView* customPinView = [[MKAnnotationView alloc]
+                                                initWithAnnotation:annotation reuseIdentifier:myAnnotationIdentifier];
+            customPinView.canShowCallout = YES;  //很重要，运行点击弹出标签
+            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self
+                            action:@selector(showDetails:)  //点击右边的按钮之后，显示另外一个页面
+                  forControlEvents:UIControlEventTouchUpInside];
+            customPinView.rightCalloutAccessoryView = rightButton;
+            MyLocationAnnotation *myAnnotation = (MyLocationAnnotation *)annotation;
+            UIImage *image = [UIImage imageNamed:@"myLocation.png"];
+            customPinView.image = image;
+            customPinView.opaque = YES;
+            return customPinView;
+        }
+        else
+        {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    return nil;
+}
+
 /*
 #pragma mark - Navigation
 
@@ -204,12 +237,19 @@
 - (IBAction)markYourPosition:(UIButton *)sender {
     //创建CLLocation 设置经纬度
     CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-    CLLocationCoordinate2D coord = [loc coordinate];
+    //CLLocationCoordinate2D coord = [loc coordinate];
     //创建标题
-    NSString *titile = [NSString stringWithFormat:@"%f,%f",coord.latitude,coord.longitude];
-    MarkPoint *markPoint = [[MarkPoint alloc] initWithCoordinate:coord andTitle:titile];
+    //NSString *titile = [NSString stringWithFormat:@"%f,%f",coord.latitude,coord.longitude];
+    //MarkPoint *markPoint = [[MarkPoint alloc] initWithCoordinate:coord andTitle:titile];
+    
     //添加标注
-    [self.mapView addAnnotation:markPoint];
+    //[self.mapView addAnnotation:markPoint];
+    
+    MyLocationAnnotation* myLocation = [[MyLocationAnnotation alloc] init];
+    myLocation.title = [NSString stringWithFormat:@"%f,%f", self.latitudeValue, self.longitudeValue];
+    myLocation.coordinate = [loc coordinate];
+    
+    [self.mapView addAnnotation:myLocation];
 }
 - (IBAction)personLocation:(id)sender {
     CLLocation *selfLocation = [[CLLocation alloc]initWithLatitude:self.latitudeValue longitude:self.longitudeValue];

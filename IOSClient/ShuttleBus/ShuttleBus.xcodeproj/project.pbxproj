@@ -41,6 +41,9 @@
 		0138A9821A360F440010FF87 /* RestRequestor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A97C1A360F440010FF87 /* RestRequestor.m */; };
 		0138A9831A360F440010FF87 /* ShareObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A97E1A360F440010FF87 /* ShareObject.m */; };
 		0138A9841A360F440010FF87 /* ShuttleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A9801A360F440010FF87 /* ShuttleAPI.m */; };
+		01B14E121A3899CD0070961C /* BusLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E111A3899CD0070961C /* BusLocationAnnotation.m */; };
+		01B14E151A38A9DF0070961C /* MyLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E141A38A9DF0070961C /* MyLocationAnnotation.m */; };
+		01B14E1B1A38B3300070961C /* myLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B14E1A1A38B3300070961C /* myLocation.png */; };
 		01B783FC1A223C3B00DCA563 /* evening.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B783FA1A223C3B00DCA563 /* evening.png */; };
 		01B783FD1A223C3B00DCA563 /* morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B783FB1A223C3B00DCA563 /* morning.png */; };
 		01B783FF1A223CEC00DCA563 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B783FE1A223CEC00DCA563 /* icon.png */; };
@@ -115,6 +118,11 @@
 		0138A97E1A360F440010FF87 /* ShareObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareObject.m; sourceTree = "<group>"; };
 		0138A97F1A360F440010FF87 /* ShuttleAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleAPI.h; sourceTree = "<group>"; };
 		0138A9801A360F440010FF87 /* ShuttleAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleAPI.m; sourceTree = "<group>"; };
+		01B14E101A3899CD0070961C /* BusLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusLocationAnnotation.h; sourceTree = "<group>"; };
+		01B14E111A3899CD0070961C /* BusLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusLocationAnnotation.m; sourceTree = "<group>"; };
+		01B14E131A38A9DF0070961C /* MyLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocationAnnotation.h; sourceTree = "<group>"; };
+		01B14E141A38A9DF0070961C /* MyLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocationAnnotation.m; sourceTree = "<group>"; };
+		01B14E1A1A38B3300070961C /* myLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myLocation.png; sourceTree = "<group>"; };
 		01B783FA1A223C3B00DCA563 /* evening.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evening.png; sourceTree = "<group>"; };
 		01B783FB1A223C3B00DCA563 /* morning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = morning.png; sourceTree = "<group>"; };
 		01B783FE1A223CEC00DCA563 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -158,6 +166,7 @@
 		002F21A9199F031B00EE889C = {
 			isa = PBXGroup;
 			children = (
+				01B14E0F1A3898C60070961C /* Annotation */,
 				0138A9771A360F440010FF87 /* CoreData */,
 				0138A97A1A360F440010FF87 /* ShareObj */,
 				002F21EA199F137E00EE889C /* GHSidebarNav */,
@@ -224,6 +233,7 @@
 		002F21BC199F031B00EE889C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01B14E1A1A38B3300070961C /* myLocation.png */,
 				01B784041A2240C600DCA563 /* mark.png */,
 				01B784021A22407900DCA563 /* bus.png */,
 				01B784001A22406900DCA563 /* person.png */,
@@ -302,6 +312,17 @@
 				0138A9801A360F440010FF87 /* ShuttleAPI.m */,
 			);
 			path = ShareObj;
+			sourceTree = "<group>";
+		};
+		01B14E0F1A3898C60070961C /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				01B14E101A3899CD0070961C /* BusLocationAnnotation.h */,
+				01B14E111A3899CD0070961C /* BusLocationAnnotation.m */,
+				01B14E131A38A9DF0070961C /* MyLocationAnnotation.h */,
+				01B14E141A38A9DF0070961C /* MyLocationAnnotation.m */,
+			);
+			path = Annotation;
 			sourceTree = "<group>";
 		};
 		956FC9BA247E91EB224BF21D /* Pods */ = {
@@ -391,6 +412,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B14E1B1A38B3300070961C /* myLocation.png in Resources */,
 				01B783FC1A223C3B00DCA563 /* evening.png in Resources */,
 				002F21CE199F031B00EE889C /* Images.xcassets in Resources */,
 				002F21FB199F137E00EE889C /* searchTextBG.png in Resources */,
@@ -459,6 +481,7 @@
 			files = (
 				002F221719A09B7F00EE889C /* MarkPoint.m in Sources */,
 				002F21F7199F137E00EE889C /* GHSidebarSearchViewController.m in Sources */,
+				01B14E121A3899CD0070961C /* BusLocationAnnotation.m in Sources */,
 				01B850861A34D190008A2DF2 /* SettingViewController.m in Sources */,
 				002F2208199FB54000EE889C /* SideMenuUtil.m in Sources */,
 				002F21F6199F137E00EE889C /* GHRevealViewController.m in Sources */,
@@ -471,6 +494,7 @@
 				002F21C6199F031B00EE889C /* AppDelegate.m in Sources */,
 				002F2205199FB29600EE889C /* HomeViewController.m in Sources */,
 				002F220E199FBFCA00EE889C /* MenuListCell.m in Sources */,
+				01B14E151A38A9DF0070961C /* MyLocationAnnotation.m in Sources */,
 				002F21C2199F031B00EE889C /* main.m in Sources */,
 				0138A9811A360F440010FF87 /* ClientSetting.m in Sources */,
 			);
