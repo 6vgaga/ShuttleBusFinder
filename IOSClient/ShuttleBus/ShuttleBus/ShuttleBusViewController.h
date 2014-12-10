@@ -10,16 +10,16 @@
 #import "IRevealControllerProperty.h"
 #import <MapKit/MapKit.h>
 
+#import "RestRequestor.h"
+
 @class BusInfo;
 
-@interface ShuttleBusViewController : UIViewController <IRevealControllerProperty, CLLocationManagerDelegate,MKMapViewDelegate>
+@interface ShuttleBusViewController : UIViewController <IRevealControllerProperty, CLLocationManagerDelegate,MKMapViewDelegate,AsynCallCompletionNotify>
 {
-    NSString* lineName;
     NSArray* busScheduleArray;
     BusInfo* busInfo;
 }
 
-@property NSString* lineName;
 @property NSArray* busScheduleArray;
 @property BusInfo* busInfo;
 

@@ -18,7 +18,7 @@
 
 @implementation ShuttleBusViewController
 
-@synthesize lineName, busScheduleArray, busInfo;
+@synthesize busScheduleArray, busInfo;
 @synthesize revealController;
 @synthesize mapView;
 @synthesize longitudeValue;
@@ -57,66 +57,119 @@
 {
     if (self.busScheduleArray == nil)
     {
-        [self getBusScheduleLocation];
-        [self goToBusScheduleLocation];
+        [self queryBusScheduleLocation];
+        //[self goToBusScheduleLocation];
         [self displayBusInfo];
-        self.navigationItem.title = self.lineName;
+        self.navigationItem.title = self.busInfo->busLine;
     }
 }
 
-- (void)getBusScheduleLocation
-{
-    bool isMorning = true;
-    if (self.workOrHomeSegment.selectedSegmentIndex == 0)
-    {
-        isMorning = true;
-    }
-    else
-    {
-        isMorning = false;
-    }
-/*    self.busScheduleArray = [BusLineOperator getBusLineSchedule:self.lineName morningOrNight:isMorning];
+-(NSInteger) getReturnedObjectArray: (NSArray*) objectArray {
     
+    return 0;
+}
+
+- (void) reportError:(NSString *)errorMsg {
+    NSLog(@"REST API call failed, error=%@",errorMsg);
+}
+
+- (void)queryBusScheduleLocation
+{
+    void (^callbackFun) (NSArray*,bool)= ^ (NSArray* arrayObject,bool isError) {
+        if (!isError)
+        {
+            if (arrayObject != nil && arrayObject.count > 0)
+            {
+                self.busScheduleArray = arrayObject;
+                [self markBusScheduleLocation];
+                [self goToBusScheduleLocation];
+            }
+        }
+        else
+            NSLog(@"can't get ShuttleLocation,err=", arrayObject.firstObject);
+    };
+    
+    RestRequestor * req= [[RestRequestor alloc] init];
+    [req getBusLineSchedule:self.busInfo->busLine  callback:callbackFun];
+}
+
+- (void)markBusScheduleLocation
+{
     [self.mapView removeAnnotations:[self.mapView annotations]];
     
     for (BusScheduleStopInfo* info in self.busScheduleArray) {
+        if (self.workOrHomeSegment.selectedSegmentIndex == 0)
+        {
+            if ([info->time compare:@"12:00"] == NSOrderedDescending)
+            {
+                continue;
+            }
+        }
+        else
+        {
+            if ([info->time compare:@"12:00"] != NSOrderedDescending)
+            {
+                continue;
+            }
+        }
         //创建CLLocation 设置经纬度
-        CLLocation *loc = [[CLLocation alloc]initWithLatitude:info.latitude longitude:info.longitude];
+        CLLocation *loc = [[CLLocation alloc]initWithLatitude:info->latitude longitude:info->longitude];
         CLLocationCoordinate2D coord = [loc coordinate];
         //创建标题
-        NSString *titile = [NSString stringWithFormat:@"%@, %@",info.name,info.time];
+        NSString *titile = [NSString stringWithFormat:@"%@, %@",info->name,info->time];
         MarkPoint *markPoint = [[MarkPoint alloc] initWithCoordinate:coord andTitle:titile];
         //添加标注
         [self.mapView addAnnotation:markPoint];
-    }*/
+    }
 }
 
 - (void)goToBusScheduleLocation
 {
     if (self.busScheduleArray != nil && self.busScheduleArray.count > 0)
     {
-        /*BusScheduleStopInfo* startInfo = [self.busScheduleArray objectAtIndex:0];
-        BusScheduleStopInfo* endInfo = [self.busScheduleArray lastObject];
-        double centerLatitude = (startInfo.latitude + endInfo.latitude)/2.0;
-        double centerLongitude = (startInfo.longitude + endInfo.longitude)/2.0;
+        BusScheduleStopInfo* startInfo = nil;
+        BusScheduleStopInfo* endInfo = nil;
+        for (BusScheduleStopInfo* info in self.busScheduleArray) {
+            if (self.workOrHomeSegment.selectedSegmentIndex == 0)
+            {
+                if ([info->time compare:@"12:00"] == NSOrderedDescending)
+                {
+                    continue;
+                }
+            }
+            else
+            {
+                if ([info->time compare:@"12:00"] != NSOrderedDescending)
+                {
+                    continue;
+                }
+            }
+            if (startInfo == nil)
+            {
+                startInfo = info;
+            }
+            
+            endInfo = info;
+        }
+        double centerLatitude = (startInfo->latitude + endInfo->latitude)/2.0;
+        double centerLongitude = (startInfo->longitude + endInfo->longitude)/2.0;
         CLLocation *centerLoc = [[CLLocation alloc]initWithLatitude:centerLatitude longitude:centerLongitude];
         
-        CLLocation *startLoc = [[CLLocation alloc]initWithLatitude:startInfo.latitude longitude:startInfo.longitude];
+        CLLocation *startLoc = [[CLLocation alloc]initWithLatitude:startInfo->latitude longitude:startInfo->longitude];
         
-        CLLocation *endLoc = [[CLLocation alloc]initWithLatitude:endInfo.latitude longitude:endInfo.longitude];
+        CLLocation *endLoc = [[CLLocation alloc]initWithLatitude:endInfo->latitude longitude:endInfo->longitude];
         
         CLLocationDistance meters =[startLoc distanceFromLocation:endLoc];
         
         CLLocationCoordinate2D loc = [centerLoc coordinate];
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, meters * 1.4, meters * 1.4);
-        [self.mapView setRegion:region animated:YES];*/
+        [self.mapView setRegion:region animated:YES];
     }
 }
 
 - (void)displayBusInfo
 {
-/*    self.busInfo = [BusLineOperator getBusInfo:self.lineName];
-    self.busInfoLabel.text = [NSString stringWithFormat:@"(%d seats) (%@ %@: %@)", self.busInfo.seatCount, self.busInfo.license, self.busInfo.driver, self.busInfo.phone];*/
+    self.busInfoLabel.text = [NSString stringWithFormat:@"(%d seats) (%@ %@: %@)", self.busInfo->seatCount, self.busInfo->license, self.busInfo->driver, self.busInfo->phone];
 }
 
 - (void)didReceiveMemoryWarning
@@ -170,7 +223,7 @@
     [self goToBusScheduleLocation];
 }
 - (IBAction)changeWorkOrHome:(id)sender {
-    [self getBusScheduleLocation];
+    [self markBusScheduleLocation];
     [self goToBusScheduleLocation];
 }
 @end

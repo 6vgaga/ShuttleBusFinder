@@ -54,67 +54,6 @@
         revealController.contentViewController = homeNC;
     }
     
-    // 获取班车数量
-    /*NSArray* busLineArray = [BusLineOperator getAllBusInfo];
-    NSMutableArray* busLineInfoCell = [[NSMutableArray alloc] init];
-    NSMutableArray* busLineControllers = [[NSMutableArray alloc] init];
-    for (BusInfo* info in busLineArray) {
-        NSMutableDictionary* tempDic = [[NSMutableDictionary alloc] init];
-        [tempDic setValue:[UIImage imageNamed:@"user.png"] forKey:kSidebarCellImageKey];
-        [tempDic setValue:NSLocalizedString(info.lineName, @"") forKey:kSidebarCellTextKey];
-        [busLineInfoCell addObject:tempDic];
-        UINavigationController* navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"];
-        ShuttleBusViewController* controller = (ShuttleBusViewController*)[navigationController topViewController];
-        controller.lineName = info.lineName;
-        [busLineControllers addObject:navigationController];
-    }*/
-    
-    // 初始化表格.
-    /*_headers = @[
-                 [NSNull null],
-                 @"",
-                 @"",
-                 ];
-    _cellInfos = @[
-                   @[
-                       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Home", @"")},
-                       ],
-                        busLineInfoCell,
-                   @[
-                       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Setting", @"")},
-                       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Logout", @"")},
-                       ],
-                   ];
-    _controllers = @[
-                     @[
-                         [self.storyboard instantiateViewControllerWithIdentifier:@"HomeNavigationController"],
-                         ],
-                        busLineControllers,
-                     @[
-                         [self.storyboard instantiateViewControllerWithIdentifier:@"SettingNavigationController"],
-                         @"logout",
-                         ],
-                     ];*/
-    
-    // 添加手势.
-    /*for (id obj1 in _controllers) {
-        if (nil==obj1) continue;
-        for (id obj2 in (NSArray *)obj1) {
-            if (nil==obj2) continue;
-            [SideMenuUtil setRevealControllerProperty:obj2 revealController:revealController];
-            if ([obj2 isKindOfClass:UINavigationController.class]) {
-                [SideMenuUtil addNavigationGesture:(UINavigationController*)obj2 revealController:revealController];
-            }
-        }
-    }*/
-    
-    // ui.
-    /*UIColor *bgColor = [UIColor colorWithRed:(50.0f/255.0f) green:(57.0f/255.0f) blue:(74.0f/255.0f) alpha:1.0f];
-    self.view.backgroundColor = bgColor;
-    self.menuTableView.delegate = self;
-    self.menuTableView.dataSource = self;
-    self.menuTableView.backgroundColor = [UIColor clearColor];
-    [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];*/
     // 初始化表格.
     _headers =[[NSMutableArray alloc] init];
     _cellInfos = [[NSMutableArray alloc] init];
@@ -259,9 +198,11 @@
          @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(busline->busLine, @"")}
          ];
         
-        [ctlArray addObject:
-         [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"]
-         ];
+        UINavigationController* navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"ShuttleBusNavigationController"];
+        ShuttleBusViewController* controller = (ShuttleBusViewController*)[navigationController topViewController];
+        controller.busInfo = busline;
+        
+        [ctlArray addObject: navigationController];
     }
     
     [_cellInfos addObject:infoArray];
