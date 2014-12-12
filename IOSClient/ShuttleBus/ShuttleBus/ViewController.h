@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DOPDropDownMenu.h"
+#import "RestRequestor.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, AsynCallCompletionNotify>
+{
+    NSArray* busMenuArray;
+}
+
+@property NSArray* busMenuArray;
+@property (weak, nonatomic) IBOutlet UILabel *fakeMenu;
 
 @end

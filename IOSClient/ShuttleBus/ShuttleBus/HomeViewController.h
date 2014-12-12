@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "IRevealControllerProperty.h"
+#import "RestRequestor.h"
 
-@interface HomeViewController : UIViewController <IRevealControllerProperty>
+@interface HomeViewController : UIViewController <IRevealControllerProperty, AsynCallCompletionNotify>
 
 @end

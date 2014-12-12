@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MenuListViewController.h"
+#import "DOPDropDownMenu.h"
 
 @interface ViewController ()
 
@@ -15,16 +16,79 @@
 
 @implementation ViewController
 
+@synthesize busMenuArray;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewDidAppear:(BOOL)animated;     // Called when the view has been fully transitioned onto the screen. Default does nothing
+{
+    if (self.busMenuArray == nil)
+    {
+        [self queryBusInfo];
+    }
+}
+
+- (void)queryBusInfo
+{
+    void (^callbackFun) (NSArray*,bool)= ^ (NSArray* arrayObject,bool isError) {
+        if (isError) {
+            NSLog(@"failed to query location, err=%@",arrayObject.firstObject);
+        }
+        else
+        {
+            [self buildBusLineMenuList: arrayObject];
+        }
+    };
+    RestRequestor* requstor= [[RestRequestor alloc]init];
+    [requstor getAllBusline:callbackFun];
+}
+
+- (void)buildBusLineMenuList: (NSArray*) arrayObject
+{
+    if (arrayObject == nil) return;
+    
+    NSMutableArray* tempArray = [[NSMutableArray alloc] init];
+    for (BusInfo* info in arrayObject) {
+        [tempArray addObject: NSLocalizedString(info->busLine, info->busLine)];
+    }
+    
+    self.busMenuArray = [NSArray arrayWithArray:tempArray];
+    
+    DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:self.fakeMenu.frame.origin andSize:self.fakeMenu.frame.size];
+    menu.dataSource = self;
+    menu.delegate = self;
+    [self.view addSubview:menu];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)menu:(DOPDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column {
+    if (self.busMenuArray != nil)
+    {
+        return self.busMenuArray.count;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+- (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath {
+    switch (indexPath.column) {
+        case 0: return self.busMenuArray[indexPath.row];
+            break;
+        default:
+            return nil;
+            break;
+    }
 }
 
 - (IBAction)loginShuttleBus:(UIButton *)sender {
@@ -54,5 +118,9 @@
         revealController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;    // 淡入淡出.
         [self presentModalViewController:revealController animated:YES];
     }
+}
+
+- (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
+    NSLog(@"column:%li row:%li", (long)indexPath.column, (long)indexPath.row);
 }
 @end

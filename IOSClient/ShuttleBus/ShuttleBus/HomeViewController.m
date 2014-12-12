@@ -25,6 +25,14 @@
     return self;
 }
 
+- (void) reportError:(NSString *)errorMsg {
+    NSLog(@"REST API call failed, error=%@",errorMsg);
+}
+
+-(NSInteger) getReturnedObjectArray: (NSArray*) objectArray {
+    return 0;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
