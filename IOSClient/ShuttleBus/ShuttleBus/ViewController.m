@@ -122,5 +122,7 @@
 
 - (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
     NSLog(@"column:%li row:%li", (long)indexPath.column, (long)indexPath.row);
+    NSString *title = [menu titleForRowAtIndexPath:indexPath];
+    NSLog(@"%@", title);
 }
 @end
