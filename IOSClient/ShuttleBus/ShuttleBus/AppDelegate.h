@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property NSString* userName;
+@property NSString* lineName;
+
 @end

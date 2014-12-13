@@ -9,12 +9,14 @@
 #import "ViewController.h"
 #import "MenuListViewController.h"
 #import "DOPDropDownMenu.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
+@synthesize userName, password;
 
 @synthesize busMenuArray;
 
@@ -22,6 +24,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    userName.delegate = self;
+    password.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated;     // Called when the view has been fully transitioned onto the screen. Default does nothing
@@ -52,6 +56,7 @@
     if (arrayObject == nil) return;
     
     NSMutableArray* tempArray = [[NSMutableArray alloc] init];
+    [tempArray addObject: NSLocalizedString(@"Select Line", @"Select Line")];
     for (BusInfo* info in arrayObject) {
         [tempArray addObject: NSLocalizedString(info->busLine, info->busLine)];
     }
@@ -92,6 +97,28 @@
 }
 
 - (IBAction)loginShuttleBus:(UIButton *)sender {
+    if (self.userName.text == nil || self.userName.text.length == 0)
+    {
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Please input your User Name" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alter show];
+        return;
+    }
+    
+    if (self.password.text == nil || self.password.text.length == 0)
+    {
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Please input your Password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alter show];
+        return;
+    }
+    
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    
+    if (delegate.lineName == nil || delegate.lineName.length == 0)
+    {
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"Fail" message:@"Please select your bus line" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alter show];
+        return;
+    }
     // 获取菜单页面.
     MenuListViewController* menuVc = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuListViewController"];
     NSLog(@"instantiateViewControllerWithIdentifier: %@", menuVc);
@@ -122,7 +149,22 @@
 
 - (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
     NSLog(@"column:%li row:%li", (long)indexPath.column, (long)indexPath.row);
-    NSString *title = [menu titleForRowAtIndexPath:indexPath];
-    NSLog(@"%@", title);
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if (indexPath.row == 0)
+    {
+        delegate.lineName = @"";
+    }
+    else
+    {
+        delegate.lineName = [menu titleForRowAtIndexPath:indexPath];
+    }
+    
+    NSLog(@"%@", delegate.lineName);
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end

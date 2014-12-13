@@ -68,6 +68,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="fakeMenu" destination="MX0-9D-SKc" id="SJ1-WG-YDa"/>
+                        <outlet property="password" destination="zrM-JN-KCq" id="pql-64-Zcb"/>
+                        <outlet property="userName" destination="OFA-Ci-BXb" id="T8i-kn-FIl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

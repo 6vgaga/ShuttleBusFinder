@@ -10,12 +10,14 @@
 #import "DOPDropDownMenu.h"
 #import "RestRequestor.h"
 
-@interface ViewController : UIViewController <DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, AsynCallCompletionNotify>
+@interface ViewController : UIViewController <DOPDropDownMenuDataSource, DOPDropDownMenuDelegate, AsynCallCompletionNotify, UITextFieldDelegate>
 {
     NSArray* busMenuArray;
 }
 
 @property NSArray* busMenuArray;
 @property (weak, nonatomic) IBOutlet UILabel *fakeMenu;
+@property (weak, nonatomic) IBOutlet UITextField *userName;
+@property (weak, nonatomic) IBOutlet UITextField *password;
 
 @end
