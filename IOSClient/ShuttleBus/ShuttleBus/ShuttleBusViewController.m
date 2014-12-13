@@ -70,8 +70,6 @@
         self.navigationItem.title = self.busInfo->busLine;
     }
     
-    [self queryBusLocation];
-    
     if (self.timer == nil)
     {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:10
@@ -118,7 +116,6 @@
 
 - (void)markBusCurrentLocation: (NSArray*) locationArray
 {
-    [self.lock  lock];
     [self.mapView removeAnnotations:[self.mapView annotations]];
     
     if (self.busScheduleArray != nil)
@@ -139,7 +136,6 @@
             [self.mapView addAnnotation:markPoint];
         }
     }
-    [self.lock  unlock];
 }
 
 -(NSInteger) getReturnedObjectArray: (NSArray*) objectArray {
@@ -173,7 +169,6 @@
 
 - (void)markBusScheduleLocation
 {
-    [self.lock  lock];
     [self.mapView removeAnnotations:[self.mapView annotations]];
     
     for (BusScheduleStopInfo* info in self.busScheduleArray) {
@@ -200,7 +195,6 @@
         //添加标注
         [self.mapView addAnnotation:markPoint];
     }
-    [self.lock  unlock];
 }
 
 - (void)goToBusScheduleLocation
@@ -316,24 +310,48 @@
 }
 
 - (IBAction)markYourPosition:(UIButton *)sender {
-    [self.lock  lock];
     //创建CLLocation 设置经纬度
     CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-    //CLLocationCoordinate2D coord = [loc coordinate];
-    //创建标题
-    //NSString *titile = [NSString stringWithFormat:@"%f,%f",coord.latitude,coord.longitude];
-    //MarkPoint *markPoint = [[MarkPoint alloc] initWithCoordinate:coord andTitle:titile];
-    
-    //添加标注
-    //[self.mapView addAnnotation:markPoint];
-    
     MyLocationAnnotation* myLocation = [[MyLocationAnnotation alloc] init];
     myLocation.title = [NSString stringWithFormat:@"%f,%f", self.latitudeValue, self.longitudeValue];
     myLocation.coordinate = [loc coordinate];
     
     [self.mapView addAnnotation:myLocation];
-    [self.lock  unlock];
+    
+    [self uploadBusLocation];
 }
+
+- (void)uploadBusLocation
+{
+    RestRequestor * req = [[RestRequestor alloc] init];
+    BusLocationInfo* aLoc=[[BusLocationInfo alloc] init];
+    aLoc->longitude = self.longitudeValue;
+    aLoc->latitude = self.latitudeValue;
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    aLoc->userID = delegate.userName;
+    
+    NSDate *date = [NSDate date];
+    NSTimeInterval sec = [date timeIntervalSince1970];
+    NSDate *epochNSDate = [[NSDate alloc] initWithTimeIntervalSince1970:sec];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *ct =[dateFormatter stringFromDate:epochNSDate];
+    aLoc->time=ct;
+    
+    void (^callback) (NSArray* ,bool )= ^(NSArray* objArray,bool isError) {
+        if (isError) {
+            NSLog(@"post location failed, err=%@",objArray.firstObject);
+        }
+        else
+        {
+            NSLog(@"location upload is succesful");
+        }
+    };
+    
+    [req updateMyLocationToServer:delegate.lineName location:aLoc callback:callback];
+}
+
 - (IBAction)personLocation:(id)sender {
     CLLocation *selfLocation = [[CLLocation alloc]initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
     

@@ -119,6 +119,8 @@
         [alter show];
         return;
     }
+    
+    delegate.userName = self.userName.text;
     // 获取菜单页面.
     MenuListViewController* menuVc = [self.storyboard instantiateViewControllerWithIdentifier:@"MenuListViewController"];
     NSLog(@"instantiateViewControllerWithIdentifier: %@", menuVc);
