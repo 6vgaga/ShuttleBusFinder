@@ -10,6 +10,7 @@
 #import "MarkPoint.h"
 #import "BusLocationAnnotation.h"
 #import "MyLocationAnnotation.h"
+#import "AppDelegate.h"
 
 @interface ShuttleBusViewController ()
 
@@ -56,17 +57,89 @@
     
     // Initialize some params;
     self.busScheduleArray = nil;
+    
+    self.lock = [[NSLock alloc] init];
 }
 
-- (void)viewDidAppear:(BOOL)animated;     // Called when the view has been fully transitioned onto the screen. Default does nothing
+- (void)viewDidAppear:(BOOL)animated     // Called when the view has been fully transitioned onto the screen. Default does nothing
 {
     if (self.busScheduleArray == nil)
     {
-        [self queryBusScheduleLocation];
-        //[self goToBusScheduleLocation];
+        [self queryBusSchedule];
         [self displayBusInfo];
         self.navigationItem.title = self.busInfo->busLine;
     }
+    
+    [self queryBusLocation];
+    
+    if (self.timer == nil)
+    {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                      target:self
+                                                    selector:@selector(queryBusLocation)
+                                                    userInfo:nil
+                                                     repeats:YES];
+        [self.timer fire];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    if (self.timer != nil)
+    {
+        [self.timer isValid];
+        
+        self.timer = nil;
+        
+        [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    }
+}
+
+-(void)queryBusLocation
+{
+    NSLog(@"start queryBusLocation");
+    
+    void (^callbackFun) (NSArray*,bool)= ^ (NSArray* arrayObject,bool isError) {
+        if (!isError)
+        {
+            if (arrayObject != nil && arrayObject.count > 0)
+            {
+                [self markBusCurrentLocation: arrayObject];
+            }
+        }
+        else
+            NSLog(@"can't get ShuttleLocation,err=", arrayObject.firstObject);
+    };
+    
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    RestRequestor * req= [[RestRequestor alloc] init];
+    [req getReportedBusLineLocation:delegate.lineName  callback:callbackFun];
+}
+
+- (void)markBusCurrentLocation: (NSArray*) locationArray
+{
+    [self.lock  lock];
+    [self.mapView removeAnnotations:[self.mapView annotations]];
+    
+    if (self.busScheduleArray != nil)
+    {
+        [self markBusScheduleLocation];
+    }
+    
+    if (locationArray != nil)
+    {
+        for (BusLocationInfo* info in locationArray) {
+            //创建CLLocation 设置经纬度
+            CLLocation *loc = [[CLLocation alloc]initWithLatitude:info->latitude longitude:info->longitude];
+            CLLocationCoordinate2D coord = [loc coordinate];
+            //创建标题
+            NSString *titile = [NSString stringWithFormat:@"%@, %@",info->userID,info->time];
+            MarkPoint *markPoint = [[MarkPoint alloc] initWithCoordinate:coord andTitle:titile];
+            //添加标注
+            [self.mapView addAnnotation:markPoint];
+        }
+    }
+    [self.lock  unlock];
 }
 
 -(NSInteger) getReturnedObjectArray: (NSArray*) objectArray {
@@ -78,7 +151,7 @@
     NSLog(@"REST API call failed, error=%@",errorMsg);
 }
 
-- (void)queryBusScheduleLocation
+- (void)queryBusSchedule
 {
     void (^callbackFun) (NSArray*,bool)= ^ (NSArray* arrayObject,bool isError) {
         if (!isError)
@@ -91,7 +164,7 @@
             }
         }
         else
-            NSLog(@"can't get ShuttleLocation,err=", arrayObject.firstObject);
+            NSLog(@"can't get ShuttleSchedule,err=", arrayObject.firstObject);
     };
     
     RestRequestor * req= [[RestRequestor alloc] init];
@@ -100,6 +173,7 @@
 
 - (void)markBusScheduleLocation
 {
+    [self.lock  lock];
     [self.mapView removeAnnotations:[self.mapView annotations]];
     
     for (BusScheduleStopInfo* info in self.busScheduleArray) {
@@ -126,6 +200,7 @@
         //添加标注
         [self.mapView addAnnotation:markPoint];
     }
+    [self.lock  unlock];
 }
 
 - (void)goToBusScheduleLocation
@@ -241,6 +316,7 @@
 }
 
 - (IBAction)markYourPosition:(UIButton *)sender {
+    [self.lock  lock];
     //创建CLLocation 设置经纬度
     CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
     //CLLocationCoordinate2D coord = [loc coordinate];
@@ -256,6 +332,7 @@
     myLocation.coordinate = [loc coordinate];
     
     [self.mapView addAnnotation:myLocation];
+    [self.lock  unlock];
 }
 - (IBAction)personLocation:(id)sender {
     CLLocation *selfLocation = [[CLLocation alloc]initWithLatitude:self.latitudeValue longitude:self.longitudeValue];

@@ -32,4 +32,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *busInfoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *configButton;
 
+@property(nonatomic, strong) NSTimer *timer;
+
+@property(nonatomic, strong) NSLock *lock;
+
 @end
