@@ -37,6 +37,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    NSArray *imageList = @[[UIImage imageNamed:@"menuChat.png"], [UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"], [UIImage imageNamed:@"menuClose.png"]];
+    sideBar = [[CDSideBarController alloc] initWithImages:imageList withMenuButton:self.configButton];
+    sideBar.delegate = self;
+    
+    [sideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(self.view.frame.size.width - 70, 0)];
+    
     [self.mapView setDelegate:self];
     [self.mapView setShowsUserLocation:YES];
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];//创建位置管理器
@@ -265,5 +271,10 @@
 - (IBAction)changeWorkOrHome:(id)sender {
     [self markBusScheduleLocation];
     [self goToBusScheduleLocation];
+}
+
+- (void)menuButtonClicked:(int)index
+{
+    // Execute what ever you want
 }
 @end

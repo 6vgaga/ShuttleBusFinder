@@ -41,6 +41,12 @@
 		0138A9821A360F440010FF87 /* RestRequestor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A97C1A360F440010FF87 /* RestRequestor.m */; };
 		0138A9831A360F440010FF87 /* ShareObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A97E1A360F440010FF87 /* ShareObject.m */; };
 		0138A9841A360F440010FF87 /* ShuttleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0138A9801A360F440010FF87 /* ShuttleAPI.m */; };
+		01A429A61A3CA15800FE1F20 /* CDSideBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429A51A3CA15800FE1F20 /* CDSideBarController.m */; };
+		01A429AC1A3CA16F00FE1F20 /* menuChat.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429A71A3CA16F00FE1F20 /* menuChat.png */; };
+		01A429AD1A3CA16F00FE1F20 /* menuClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429A81A3CA16F00FE1F20 /* menuClose.png */; };
+		01A429AE1A3CA16F00FE1F20 /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429A91A3CA16F00FE1F20 /* menuIcon.png */; };
+		01A429AF1A3CA16F00FE1F20 /* menuMap.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429AA1A3CA16F00FE1F20 /* menuMap.png */; };
+		01A429B01A3CA16F00FE1F20 /* menuUsers.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429AB1A3CA16F00FE1F20 /* menuUsers.png */; };
 		01B14E121A3899CD0070961C /* BusLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E111A3899CD0070961C /* BusLocationAnnotation.m */; };
 		01B14E151A38A9DF0070961C /* MyLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E141A38A9DF0070961C /* MyLocationAnnotation.m */; };
 		01B14E1B1A38B3300070961C /* myLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B14E1A1A38B3300070961C /* myLocation.png */; };
@@ -119,6 +125,13 @@
 		0138A97E1A360F440010FF87 /* ShareObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareObject.m; sourceTree = "<group>"; };
 		0138A97F1A360F440010FF87 /* ShuttleAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleAPI.h; sourceTree = "<group>"; };
 		0138A9801A360F440010FF87 /* ShuttleAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleAPI.m; sourceTree = "<group>"; };
+		01A429A41A3CA15800FE1F20 /* CDSideBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSideBarController.h; sourceTree = "<group>"; };
+		01A429A51A3CA15800FE1F20 /* CDSideBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSideBarController.m; sourceTree = "<group>"; };
+		01A429A71A3CA16F00FE1F20 /* menuChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuChat.png; sourceTree = "<group>"; };
+		01A429A81A3CA16F00FE1F20 /* menuClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuClose.png; sourceTree = "<group>"; };
+		01A429A91A3CA16F00FE1F20 /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon.png; sourceTree = "<group>"; };
+		01A429AA1A3CA16F00FE1F20 /* menuMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuMap.png; sourceTree = "<group>"; };
+		01A429AB1A3CA16F00FE1F20 /* menuUsers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuUsers.png; sourceTree = "<group>"; };
 		01B14E101A3899CD0070961C /* BusLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusLocationAnnotation.h; sourceTree = "<group>"; };
 		01B14E111A3899CD0070961C /* BusLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusLocationAnnotation.m; sourceTree = "<group>"; };
 		01B14E131A38A9DF0070961C /* MyLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocationAnnotation.h; sourceTree = "<group>"; };
@@ -169,6 +182,7 @@
 		002F21A9199F031B00EE889C = {
 			isa = PBXGroup;
 			children = (
+				01A429A31A3CA15800FE1F20 /* CDSideBarController */,
 				01B14E1C1A38C0C30070961C /* DOPDropDownMenu */,
 				01B14E0F1A3898C60070961C /* Annotation */,
 				0138A9771A360F440010FF87 /* CoreData */,
@@ -237,6 +251,11 @@
 		002F21BC199F031B00EE889C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01A429A71A3CA16F00FE1F20 /* menuChat.png */,
+				01A429A81A3CA16F00FE1F20 /* menuClose.png */,
+				01A429A91A3CA16F00FE1F20 /* menuIcon.png */,
+				01A429AA1A3CA16F00FE1F20 /* menuMap.png */,
+				01A429AB1A3CA16F00FE1F20 /* menuUsers.png */,
 				01B14E1A1A38B3300070961C /* myLocation.png */,
 				01B784041A2240C600DCA563 /* mark.png */,
 				01B784021A22407900DCA563 /* bus.png */,
@@ -316,6 +335,15 @@
 				0138A9801A360F440010FF87 /* ShuttleAPI.m */,
 			);
 			path = ShareObj;
+			sourceTree = "<group>";
+		};
+		01A429A31A3CA15800FE1F20 /* CDSideBarController */ = {
+			isa = PBXGroup;
+			children = (
+				01A429A41A3CA15800FE1F20 /* CDSideBarController.h */,
+				01A429A51A3CA15800FE1F20 /* CDSideBarController.m */,
+			);
+			path = CDSideBarController;
 			sourceTree = "<group>";
 		};
 		01B14E0F1A3898C60070961C /* Annotation */ = {
@@ -432,15 +460,20 @@
 				002F21FF199FA2F900EE889C /* bgMain.jpg in Resources */,
 				002F21FC199F137E00EE889C /* user.png in Resources */,
 				002F21FA199F137E00EE889C /* searchBarIcon@2x.png in Resources */,
+				01A429AC1A3CA16F00FE1F20 /* menuChat.png in Resources */,
 				002F21C0199F031B00EE889C /* InfoPlist.strings in Resources */,
+				01A429AF1A3CA16F00FE1F20 /* menuMap.png in Resources */,
 				002F21F8199F137E00EE889C /* searchBarBG.png in Resources */,
 				01B784031A22407900DCA563 /* bus.png in Resources */,
+				01A429AD1A3CA16F00FE1F20 /* menuClose.png in Resources */,
 				01B783FF1A223CEC00DCA563 /* icon.png in Resources */,
+				01A429AE1A3CA16F00FE1F20 /* menuIcon.png in Resources */,
 				002F21C9199F031B00EE889C /* Main.storyboard in Resources */,
 				01B784051A2240C600DCA563 /* mark.png in Resources */,
 				002F21F9199F137E00EE889C /* searchBarIcon.png in Resources */,
 				01B783FD1A223C3B00DCA563 /* morning.png in Resources */,
 				01B784011A22406900DCA563 /* person.png in Resources */,
+				01A429B01A3CA16F00FE1F20 /* menuUsers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +542,7 @@
 				002F2205199FB29600EE889C /* HomeViewController.m in Sources */,
 				002F220E199FBFCA00EE889C /* MenuListCell.m in Sources */,
 				01B14E151A38A9DF0070961C /* MyLocationAnnotation.m in Sources */,
+				01A429A61A3CA15800FE1F20 /* CDSideBarController.m in Sources */,
 				002F21C2199F031B00EE889C /* main.m in Sources */,
 				0138A9811A360F440010FF87 /* ClientSetting.m in Sources */,
 			);

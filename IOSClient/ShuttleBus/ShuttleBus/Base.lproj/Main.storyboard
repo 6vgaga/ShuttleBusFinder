@@ -189,6 +189,7 @@
                                     <segment title="To Work"/>
                                     <segment title="Back Home"/>
                                 </segments>
+                                <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="changeWorkOrHome:" destination="0YB-Rg-nGN" eventType="valueChanged" id="Yc3-ea-uHN"/>
                                 </connections>
@@ -202,9 +203,19 @@
                                 <action selector="showLeftMenu:" destination="0YB-Rg-nGN" id="XvY-KY-THo"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ImQ-NL-Rst">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TXP-jD-lVB">
+                                <rect key="frame" x="233" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="cfg">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="busInfoLabel" destination="EhU-eo-qjP" id="amu-zN-e93"/>
+                        <outlet property="configButton" destination="TXP-jD-lVB" id="gSg-aJ-VBr"/>
                         <outlet property="mapView" destination="hJv-r1-2F0" id="Di7-Zh-svK"/>
                         <outlet property="workOrHomeSegment" destination="7X8-S8-XZ4" id="Vv1-nv-dZo"/>
                     </connections>

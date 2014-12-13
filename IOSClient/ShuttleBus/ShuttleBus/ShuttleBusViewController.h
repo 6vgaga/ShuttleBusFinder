@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "IRevealControllerProperty.h"
 #import <MapKit/MapKit.h>
-
+#import "CDSideBarController.h"
 #import "RestRequestor.h"
 
 @class BusInfo;
 
-@interface ShuttleBusViewController : UIViewController <IRevealControllerProperty, CLLocationManagerDelegate,MKMapViewDelegate,AsynCallCompletionNotify>
+@interface ShuttleBusViewController : UIViewController <IRevealControllerProperty, CLLocationManagerDelegate,MKMapViewDelegate, AsynCallCompletionNotify, CDSideBarControllerDelegate>
 {
     NSArray* busScheduleArray;
     BusInfo* busInfo;
+    CDSideBarController *sideBar;
 }
 
 @property NSArray* busScheduleArray;
@@ -29,5 +30,6 @@
 @property (assign, nonatomic) float latitudeValue;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *workOrHomeSegment;
 @property (weak, nonatomic) IBOutlet UILabel *busInfoLabel;
+@property (weak, nonatomic) IBOutlet UIButton *configButton;
 
 @end
