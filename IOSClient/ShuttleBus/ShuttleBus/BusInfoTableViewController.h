@@ -11,5 +11,6 @@
 
 @interface BusInfoTableViewController : UITableViewController<JASwipeCellDelegate>
 @property (nonatomic, strong) NSMutableArray *tableData;
+@property NSString* busLine;
 
 @end

@@ -114,7 +114,7 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0, 0, 320, 40);
-    button.tag = 100+section;
+    button.tag = section;
     [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     
@@ -129,6 +129,7 @@
 {
     //BusInfoViewController* svc=[[BusInfoViewController alloc]init];
     BusInfoTableViewController* svc = [self.storyboard instantiateViewControllerWithIdentifier:@"BusInfoTableViewController"];
+    svc.busLine = [titleDataArray objectAtIndex:sender.tag];
     [self.navigationController pushViewController:svc animated:YES];
 }
 

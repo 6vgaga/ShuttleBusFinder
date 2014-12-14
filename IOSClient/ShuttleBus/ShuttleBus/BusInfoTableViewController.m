@@ -23,19 +23,17 @@
 @implementation BusInfoTableViewController
 
 @synthesize tableData;
+@synthesize busLine;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"JASwipeCell Example";
+    self.title = self.busLine;
     
     [self resetData];
     
     [self.tableView registerClass:[BusInfoTableViewCell class] forCellReuseIdentifier:kBusInfoTableViewCellReuseIdentifier];
-    
-    UIBarButtonItem *resetButton = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(resetData)];
-    self.navigationItem.rightBarButtonItem = resetButton;
 }
 
 - (void)didReceiveMemoryWarning {
