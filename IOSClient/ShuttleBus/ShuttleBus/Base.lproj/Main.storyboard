@@ -295,32 +295,31 @@
             </objects>
             <point key="canvasLocation" x="963" y="1300"/>
         </scene>
-        <!--Bus Info View Controller-->
-        <scene sceneID="VtS-nj-O4w">
+        <!--Bus Info Table View Controller-->
+        <scene sceneID="mPK-VD-9hb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dUi-0r-vke" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="BusInfoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HIl-Rx-b7i" userLabel="Bus Info View Controller" customClass="BusInfoViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="V4j-dL-aM4"/>
-                        <viewControllerLayoutGuide type="bottom" id="vHS-zE-b2Y"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="P3f-43-1ji">
+                <tableViewController storyboardIdentifier="BusInfoTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W7O-xS-Wzw" userLabel="Bus Info Table View Controller" customClass="BusInfoTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zn7-1n-bOo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2aa-cl-IS5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="2aa-cl-IS5" id="M0X-uj-uLW"/>
-                    </connections>
-                </viewController>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RMg-n8-f6q">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RMg-n8-f6q" id="3uj-5g-gr6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="W7O-xS-Wzw" id="VDe-3p-TKc"/>
+                            <outlet property="delegate" destination="W7O-xS-Wzw" id="OXw-cz-Jme"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cMV-qR-Dis" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="963" y="1979"/>
+            <point key="canvasLocation" x="963" y="1946"/>
         </scene>
         <!--Setting Navigation Controller-->
         <scene sceneID="dwe-iU-OGI">

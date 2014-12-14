@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 TR. All rights reserved.
 //
 
-#import "BusInfoViewController.h"
+#import "BusInfoTableViewController.h"
 #import "JAActionButton.h"
 
 #define kBusInfoTableViewCellReuseIdentifier     @"BusInfoTableViewCellIdentifier"
@@ -16,13 +16,12 @@
 #define kArchiveButtonColor     [UIColor colorWithRed:60.0/255.0 green:112.0/255.0 blue:168/255.0 alpha:1]
 #define kUnreadButtonColor      [UIColor colorWithRed:0/255.0 green:122.0/255.0 blue:255.0/255.0 alpha:1]
 
-@interface BusInfoViewController ()
+@interface BusInfoTableViewController ()
 
 @end
 
-@implementation BusInfoViewController
+@implementation BusInfoTableViewController
 
-@synthesize tableView;
 @synthesize tableData;
 
 - (void)viewDidLoad {

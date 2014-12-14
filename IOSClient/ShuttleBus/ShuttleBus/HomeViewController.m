@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "AppDelegate.h"
-#import "BusInfoViewController.h"
+#import "BusInfoTableViewController.h"
 
 @interface HomeViewController ()
 
@@ -128,7 +128,7 @@
 -(void)doButton:(UIButton *)sender
 {
     //BusInfoViewController* svc=[[BusInfoViewController alloc]init];
-    BusInfoViewController* svc = [self.storyboard instantiateViewControllerWithIdentifier:@"BusInfoViewController"];
+    BusInfoTableViewController* svc = [self.storyboard instantiateViewControllerWithIdentifier:@"BusInfoTableViewController"];
     [self.navigationController pushViewController:svc animated:YES];
 }
 
