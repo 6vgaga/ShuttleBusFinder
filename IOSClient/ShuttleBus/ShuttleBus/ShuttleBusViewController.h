@@ -22,7 +22,10 @@
 }
 
 @property NSArray* busScheduleArray;
+@property NSArray* busLocationArray;
 @property BusInfo* busInfo;
+@property bool displaySchedule;
+@property bool displayLocation;
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 

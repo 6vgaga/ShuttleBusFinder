@@ -54,7 +54,7 @@
         [_backgroundMenuView addSubview:button];
     }
 
-    _backgroundMenuView.frame = CGRectMake(view.frame.size.width, 0, 90, view.frame.size.height);
+    _backgroundMenuView.frame = CGRectMake(view.frame.size.width, _menuButton.frame.origin.y + _menuButton.frame.size.height, 90, 90 * _buttonList.count);
     //_backgroundMenuView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f];
     _backgroundMenuView.backgroundColor = [UIColor colorWithRed:(78.0f/255.0f) green:(86.0f/255.0f) blue:(103.0f/255.0f) alpha:1.0f];
     [view addSubview:_backgroundMenuView];

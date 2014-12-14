@@ -18,11 +18,13 @@
 
 @implementation ShuttleBusViewController
 
-@synthesize busScheduleArray, busInfo;
+@synthesize busScheduleArray, busLocationArray, busInfo;
 @synthesize revealController;
 @synthesize mapView;
 @synthesize longitudeValue;
 @synthesize latitudeValue;
+@synthesize displaySchedule;
+@synthesize displayLocation;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,11 +40,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    /*NSArray *imageList = @[[UIImage imageNamed:@"menuChat.png"], [UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"], [UIImage imageNamed:@"menuClose.png"]];
+    self.displaySchedule = true;
+    self.displayLocation = true;
+    
+    NSArray *imageList = @[[UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"], [UIImage imageNamed:@"menuClose.png"]];
     sideBar = [[CDSideBarController alloc] initWithImages:imageList withMenuButton:self.configButton];
     sideBar.delegate = self;
-    
-    [sideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(self.view.frame.size.width - 70, 0)];*/
+
+    [sideBar insertMenuButtonOnView:self.view atPosition:CGPointMake(self.view.frame.size.width - 70, 0)];
     
     [self.mapView setDelegate:self];
     [self.mapView setShowsUserLocation:YES];
@@ -103,7 +108,8 @@
         {
             if (arrayObject != nil && arrayObject.count > 0)
             {
-                [self markBusCurrentLocation: arrayObject];
+                self.busLocationArray = arrayObject;
+                [self markBusLocation];
             }
         }
         else
@@ -115,24 +121,45 @@
     [req getReportedBusLineLocation:delegate.lineName  callback:callbackFun];
 }
 
-- (void)markBusCurrentLocation: (NSArray*) locationArray
+- (void)markBusLocation
 {
-    [self.mapView removeAnnotations:[self.mapView annotations]];
+    [self.mapView removeAnnotations: [self.mapView annotations]];
     
-    if (self.busScheduleArray != nil)
+    if (self.busLocationArray != nil && self.displayLocation == true)
     {
-        [self markBusScheduleLocation];
-    }
-    
-    if (locationArray != nil)
-    {
-        for (BusLocationInfo* info in locationArray) {
+        for (BusLocationInfo* info in self.busLocationArray) {
             CLLocation *loc = [[CLLocation alloc]initWithLatitude:info->latitude longitude:info->longitude];
-            BusLocationAnnotation* myLocation = [[BusLocationAnnotation alloc] init];
+            MyLocationAnnotation* myLocation = [[MyLocationAnnotation alloc] init];
             myLocation.title = [NSString stringWithFormat:@"%@, %@",info->userID,info->time];
             myLocation.coordinate = [loc coordinate];
             
             [self.mapView addAnnotation:myLocation];
+        }
+    }
+    
+    if (self.busScheduleArray != nil && self.displaySchedule == true)
+    {
+        for (BusScheduleStopInfo* info in self.busScheduleArray) {
+            if (self.workOrHomeSegment.selectedSegmentIndex == 0)
+            {
+                if ([info->time compare:@"12:00"] == NSOrderedDescending)
+                {
+                    continue;
+                }
+            }
+            else
+            {
+                if ([info->time compare:@"12:00"] != NSOrderedDescending)
+                {
+                    continue;
+                }
+            }
+            CLLocation *loc = [[CLLocation alloc]initWithLatitude:info->latitude longitude:info->longitude];
+            BusLocationAnnotation* busLocation = [[BusLocationAnnotation alloc] init];
+            busLocation.title = [NSString stringWithFormat:@"%@, %@",info->name,info->time];
+            busLocation.coordinate = [loc coordinate];
+            
+            [self.mapView addAnnotation:busLocation];
         }
     }
 }
@@ -154,7 +181,7 @@
             if (arrayObject != nil && arrayObject.count > 0)
             {
                 self.busScheduleArray = arrayObject;
-                [self markBusScheduleLocation];
+                [self markBusLocation];
                 [self goToBusScheduleLocation];
             }
         }
@@ -164,36 +191,6 @@
     
     RestRequestor * req= [[RestRequestor alloc] init];
     [req getBusLineSchedule:self.busInfo->busLine  callback:callbackFun];
-}
-
-- (void)markBusScheduleLocation
-{
-    [self.mapView removeAnnotations:[self.mapView annotations]];
-    
-    for (BusScheduleStopInfo* info in self.busScheduleArray) {
-        if (self.workOrHomeSegment.selectedSegmentIndex == 0)
-        {
-            if ([info->time compare:@"12:00"] == NSOrderedDescending)
-            {
-                continue;
-            }
-        }
-        else
-        {
-            if ([info->time compare:@"12:00"] != NSOrderedDescending)
-            {
-                continue;
-            }
-        }
-        //创建CLLocation 设置经纬度
-        CLLocation *loc = [[CLLocation alloc]initWithLatitude:info->latitude longitude:info->longitude];
-        CLLocationCoordinate2D coord = [loc coordinate];
-        //创建标题
-        NSString *titile = [NSString stringWithFormat:@"%@, %@",info->name,info->time];
-        MarkPoint *markPoint = [[MarkPoint alloc] initWithCoordinate:coord andTitle:titile];
-        //添加标注
-        [self.mapView addAnnotation:markPoint];
-    }
 }
 
 - (void)goToBusScheduleLocation
@@ -336,14 +333,6 @@
 }
 
 - (IBAction)markYourPosition:(UIButton *)sender {
-    //创建CLLocation 设置经纬度
-    CLLocation *loc = [[CLLocation alloc]initWithLatitude:self.latitudeValue longitude:self.longitudeValue];
-    MyLocationAnnotation* myLocation = [[MyLocationAnnotation alloc] init];
-    myLocation.title = [NSString stringWithFormat:@"%f,%f", self.latitudeValue, self.longitudeValue];
-    myLocation.coordinate = [loc coordinate];
-    
-    [self.mapView addAnnotation:myLocation];
-    
     [self uploadBusLocation: self.longitudeValue withLatitude:self.latitudeValue];
 }
 
@@ -390,13 +379,21 @@
     [self goToBusScheduleLocation];
 }
 - (IBAction)changeWorkOrHome:(id)sender {
-    [self markBusScheduleLocation];
     [self goToBusScheduleLocation];
 }
 
 - (void)menuButtonClicked:(int)index
 {
-    // Execute what ever you want
+    if (index == 0)
+    {
+        self.displaySchedule = !self.displaySchedule;
+        [self markBusLocation];
+    }
+    else if (index == 1)
+    {
+        self.displayLocation = !self.displayLocation;
+        [self markBusLocation];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
@@ -405,11 +402,11 @@
 
 - (void)tapPress:(UIGestureRecognizer*)gestureRecognizer
 {
-    /*AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     if (delegate.clickUpload == false)
     {
         return;
-    }*/
+    }
     
     CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];//这里touchPoint是点击的某点在地图控件中的位置
     CLLocationCoordinate2D touchMapCoordinate =
