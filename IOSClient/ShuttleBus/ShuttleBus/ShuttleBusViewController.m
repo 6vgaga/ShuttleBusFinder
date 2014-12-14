@@ -127,14 +127,12 @@
     if (locationArray != nil)
     {
         for (BusLocationInfo* info in locationArray) {
-            //创建CLLocation 设置经纬度
             CLLocation *loc = [[CLLocation alloc]initWithLatitude:info->latitude longitude:info->longitude];
-            CLLocationCoordinate2D coord = [loc coordinate];
-            //创建标题
-            NSString *titile = [NSString stringWithFormat:@"%@, %@",info->userID,info->time];
-            MarkPoint *markPoint = [[MarkPoint alloc] initWithCoordinate:coord andTitle:titile];
-            //添加标注
-            [self.mapView addAnnotation:markPoint];
+            BusLocationAnnotation* myLocation = [[BusLocationAnnotation alloc] init];
+            myLocation.title = [NSString stringWithFormat:@"%@, %@",info->userID,info->time];
+            myLocation.coordinate = [loc coordinate];
+            
+            [self.mapView addAnnotation:myLocation];
         }
     }
 }
@@ -264,8 +262,11 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]])
+    {
         return nil;
-    if ([annotation isKindOfClass:[MyLocationAnnotation class]]) {
+    }
+    else if ([annotation isKindOfClass:[MyLocationAnnotation class]])
+    {
         // try to dequeue an existing pin view first
         static NSString* myAnnotationIdentifier = @"MyAnnotationIdentifier";
         MKPinAnnotationView* pinView = (MKPinAnnotationView *)
@@ -276,15 +277,39 @@
             MKAnnotationView* customPinView = [[MKAnnotationView alloc]
                                                 initWithAnnotation:annotation reuseIdentifier:myAnnotationIdentifier];
             customPinView.canShowCallout = YES;  //很重要，运行点击弹出标签
-            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [rightButton addTarget:self
-                            action:@selector(showDetails:)  //点击右边的按钮之后，显示另外一个页面
-                  forControlEvents:UIControlEventTouchUpInside];
-            customPinView.rightCalloutAccessoryView = rightButton;
+            //UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            //[rightButton addTarget:self action:@selector(showDetails:) forControlEvents:UIControlEventTouchUpInside]; //点击右边的按钮之后，显示另外一个页面
+            //customPinView.rightCalloutAccessoryView = rightButton;
             MyLocationAnnotation *myAnnotation = (MyLocationAnnotation *)annotation;
             UIImage *image = [UIImage imageNamed:@"myLocation.png"];
             customPinView.image = image;
             customPinView.opaque = YES;
+            customPinView.frame = CGRectMake(0, 0, 30, 30);
+            return customPinView;
+        }
+        else
+        {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    else if ([annotation isKindOfClass:[BusLocationAnnotation class]])
+    {
+        // try to dequeue an existing pin view first
+        static NSString* busAnnotationIdentifier = @"BusAnnotationIdentifier";
+        MKPinAnnotationView* pinView = (MKPinAnnotationView *)
+        [mapView dequeueReusableAnnotationViewWithIdentifier:busAnnotationIdentifier];
+        if (!pinView)
+        {
+            // if an existing pin view was not available, create one
+            MKAnnotationView* customPinView = [[MKAnnotationView alloc]
+                                               initWithAnnotation:annotation reuseIdentifier:busAnnotationIdentifier];
+            customPinView.canShowCallout = YES;  //很重要，运行点击弹出标签
+            BusLocationAnnotation *busAnnotation = (BusLocationAnnotation *)annotation;
+            UIImage *image = [UIImage imageNamed:@"busLocation.png"];
+            customPinView.image = image;
+            customPinView.opaque = YES;
+            customPinView.frame = CGRectMake(0, 0, 30, 30);
             return customPinView;
         }
         else
@@ -319,15 +344,15 @@
     
     [self.mapView addAnnotation:myLocation];
     
-    [self uploadBusLocation];
+    [self uploadBusLocation: self.longitudeValue withLatitude:self.latitudeValue];
 }
 
-- (void)uploadBusLocation
+- (void)uploadBusLocation: (float) longtitude withLatitude: (float) latitude
 {
     RestRequestor * req = [[RestRequestor alloc] init];
     BusLocationInfo* aLoc=[[BusLocationInfo alloc] init];
-    aLoc->longitude = self.longitudeValue;
-    aLoc->latitude = self.latitudeValue;
+    aLoc->longitude = longtitude;
+    aLoc->latitude = latitude;
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     aLoc->userID = delegate.userName;
     
@@ -374,11 +399,24 @@
     // Execute what ever you want
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    NSLog(@"Click Annotation %f %f", view.annotation.coordinate.longitude, view.annotation.coordinate.latitude);
+}
+
 - (void)tapPress:(UIGestureRecognizer*)gestureRecognizer
 {
+    /*AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if (delegate.clickUpload == false)
+    {
+        return;
+    }*/
+    
     CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];//这里touchPoint是点击的某点在地图控件中的位置
     CLLocationCoordinate2D touchMapCoordinate =
     [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];//这里touchMapCoordinate就是该点的经纬度了
+    
     NSLog(@"Click into Map %f %f", touchMapCoordinate.longitude, touchMapCoordinate.latitude);
+    
+    [self uploadBusLocation: touchMapCoordinate.longitude withLatitude:touchMapCoordinate.latitude];
 }
 @end
