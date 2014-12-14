@@ -25,6 +25,7 @@
 @synthesize latitudeValue;
 @synthesize displaySchedule;
 @synthesize displayLocation;
+@synthesize innerTimerInterval;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +43,7 @@
     
     self.displaySchedule = true;
     self.displayLocation = true;
+    self.innerTimerInterval = 30;
     
     NSArray *imageList = @[[UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"], [UIImage imageNamed:@"menuClose.png"]];
     sideBar = [[CDSideBarController alloc] initWithImages:imageList withMenuButton:self.configButton];
@@ -76,9 +78,24 @@
         self.navigationItem.title = self.busInfo->busLine;
     }
     
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if (delegate.timerInterval != self.innerTimerInterval)
+    {
+        if (self.timer != nil)
+        {
+            [self.timer isValid];
+            
+            self.timer = nil;
+            
+            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+        }
+        
+        self.innerTimerInterval = delegate.timerInterval;
+    }
+    
     if (self.timer == nil)
     {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:10
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:self.innerTimerInterval
                                                       target:self
                                                     selector:@selector(queryBusLocation)
                                                     userInfo:nil

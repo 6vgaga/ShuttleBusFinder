@@ -16,5 +16,6 @@
 @property NSString* lineName;
 @property bool clickUpload;
 @property NSArray* busLineArry;
+@property int timerInterval;
 
 @end

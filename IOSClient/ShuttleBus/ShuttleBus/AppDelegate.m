@@ -10,7 +10,7 @@
 
 @implementation AppDelegate
 
-@synthesize userName, lineName, clickUpload, busLineArry;
+@synthesize userName, lineName, clickUpload, busLineArry, timerInterval;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

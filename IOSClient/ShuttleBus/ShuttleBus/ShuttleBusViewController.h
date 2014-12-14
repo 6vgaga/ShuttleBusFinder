@@ -21,6 +21,7 @@
     CDSideBarController *sideBar;
 }
 
+@property int innerTimerInterval;
 @property NSArray* busScheduleArray;
 @property NSArray* busLocationArray;
 @property BusInfo* busInfo;

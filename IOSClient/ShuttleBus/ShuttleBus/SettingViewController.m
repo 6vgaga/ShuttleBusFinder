@@ -29,6 +29,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.frequenceText.delegate = self;
+}
+
+- (void)viewDidAppear:(BOOL)animated     // Called when the view has been fully transitioned onto the screen. Default does nothing
+{
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    self.frequenceText.text = [NSString stringWithFormat:@"%f", delegate.timerInterval];
+    
+    if (delegate.clickUpload == true)
+    {
+        [self.switchClickToUpload setOn:TRUE];
+    }
+    else
+    {
+        [self.switchClickToUpload setOn:FALSE];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,5 +76,17 @@
     {
         delegate.clickUpload = false;
     }
+}
+- (IBAction)applyFrequency:(id)sender {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    delegate.timerInterval = [self.frequenceText.text intValue];
+}
+- (IBAction)applyYourLine:(id)sender {
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end

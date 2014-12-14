@@ -29,6 +29,7 @@
     
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     delegate.clickUpload = false;
+    delegate.timerInterval = 30;
 }
 
 - (void)viewDidAppear:(BOOL)animated;     // Called when the view has been fully transitioned onto the screen. Default does nothing
