@@ -79,7 +79,7 @@
 //设置表头的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40;
+    return 100;
 }
 
 //Section Footer的高度
@@ -105,20 +105,49 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
     view.backgroundColor = [UIColor whiteColor];
     
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, tableView.frame.size.width-20, 30)];
-    titleLabel.text = [titleDataArray objectAtIndex:section];
-    [view addSubview:titleLabel];
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if (delegate.busLineArry == nil)
+    {
+        return nil;
+    }
+    
+    BusInfo* info = [delegate.busLineArry objectAtIndex:section];
+    
+    UIImageView *photoImgView = [[UIImageView alloc]initWithFrame:CGRectMake(8, 11, 77, 77)];
+    photoImgView.image = [UIImage imageNamed:@"busIcon.jpg"];
+    [view addSubview:photoImgView];
+    
+    UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 3, 200, 25)];
+    nameLabel.text = [NSString stringWithFormat:@"Driver: %@", info->driver];
+    [view addSubview:nameLabel];
+    
+    UILabel *licLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 27, 200, 25)];
+    licLabel.text = [NSString stringWithFormat:@"License: %@", info->license];
+    [view addSubview:licLabel];
+    
+    UILabel *phoLable = [[UILabel alloc]initWithFrame:CGRectMake(100, 51, 200, 25)];
+    phoLable.text = [NSString stringWithFormat:@"Phone: %@", info->phone];
+    [view addSubview:phoLable];
+    
+    UILabel *scLable = [[UILabel alloc]initWithFrame:CGRectMake(100, 75, 200, 25)];
+    scLable.text = [NSString stringWithFormat:@"SeatCount: %d", info->seatCount];
+    [view addSubview:scLable];
+    
+    UILabel *numLable = [[UILabel alloc]initWithFrame:CGRectMake(8, 75, 70, 21)];
+    numLable.text = info->busLine;
+    [view addSubview:numLable];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0, 0, 320, 40);
+    button.frame = CGRectMake(270, 25, 50, 50);
+    [button setImage:[UIImage imageNamed:@"viewDetail.jpg"] forState:UIControlStateNormal];
     button.tag = section;
     [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
     
-    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 39, 320, 1)];
+    UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 99, 320, 1)];
     lineImage.image = [UIImage imageNamed:@"line.png"];
     [view addSubview:lineImage];
     
