@@ -79,28 +79,32 @@
     }
     
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    if (delegate.timerInterval != self.innerTimerInterval)
+    
+    if ([delegate.lineName isEqualToString:self.busInfo->busLine])
     {
-        if (self.timer != nil)
+        if (delegate.timerInterval != self.innerTimerInterval)
         {
-            [self.timer isValid];
+            if (self.timer != nil)
+            {
+                [self.timer isValid];
+                
+                self.timer = nil;
+                
+                [NSObject cancelPreviousPerformRequestsWithTarget:self];
+            }
             
-            self.timer = nil;
-            
-            [NSObject cancelPreviousPerformRequestsWithTarget:self];
+            self.innerTimerInterval = delegate.timerInterval;
         }
         
-        self.innerTimerInterval = delegate.timerInterval;
-    }
-    
-    if (self.timer == nil)
-    {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:self.innerTimerInterval
-                                                      target:self
-                                                    selector:@selector(queryBusLocation)
-                                                    userInfo:nil
-                                                     repeats:YES];
-        [self.timer fire];
+        if (self.timer == nil)
+        {
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:self.innerTimerInterval
+                                                          target:self
+                                                        selector:@selector(queryBusLocation)
+                                                        userInfo:nil
+                                                         repeats:YES];
+            [self.timer fire];
+        }
     }
 }
 
