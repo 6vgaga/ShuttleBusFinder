@@ -281,6 +281,20 @@
                     <view key="view" contentMode="scaleToFill" id="gMh-UJ-VwV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click Map To Upload" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aX-i1-Eeq">
+                                <rect key="frame" x="37" y="103" width="166" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u8B-7F-p7q">
+                                <rect key="frame" x="223" y="98" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchClickUpload:" destination="j4D-n8-nPd" eventType="valueChanged" id="y7w-DV-wbE"/>
+                                </connections>
+                            </switch>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shuttle Bus" id="G1l-Gm-ih9">
@@ -290,6 +304,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="switchClickToUpload" destination="u8B-7F-p7q" id="8V4-bk-hF6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kT9-0N-uIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

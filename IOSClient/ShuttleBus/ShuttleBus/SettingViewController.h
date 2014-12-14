@@ -10,5 +10,6 @@
 #import "IRevealControllerProperty.h"
 
 @interface SettingViewController : UIViewController <IRevealControllerProperty>
+@property (weak, nonatomic) IBOutlet UISwitch *switchClickToUpload;
 
 @end

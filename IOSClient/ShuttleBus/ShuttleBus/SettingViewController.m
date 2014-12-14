@@ -7,6 +7,7 @@
 //
 
 #import "SettingViewController.h"
+#import "AppDelegate.h"
 
 @interface SettingViewController ()
 
@@ -49,4 +50,15 @@
     [self.revealController toggleSidebar:!self.revealController.sidebarShowing duration:kGHRevealSidebarDefaultAnimationDuration];
 }
 
+- (IBAction)switchClickUpload:(id)sender {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if ([self.switchClickToUpload isOn])
+    {
+        delegate.clickUpload = true;
+    }
+    else
+    {
+        delegate.clickUpload = false;
+    }
+}
 @end
