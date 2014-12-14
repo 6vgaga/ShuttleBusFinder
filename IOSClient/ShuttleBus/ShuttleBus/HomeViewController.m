@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "AppDelegate.h"
+#import "BusInfoViewController.h"
 
 @interface HomeViewController ()
 
@@ -126,7 +127,8 @@
 
 -(void)doButton:(UIButton *)sender
 {
-    
+    BusInfoViewController* svc=[[BusInfoViewController alloc]init];
+    [self.navigationController pushViewController:svc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

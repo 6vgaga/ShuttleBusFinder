@@ -50,6 +50,7 @@
 		01A429B51A3D5CF800FE1F20 /* busLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429B41A3D5CF800FE1F20 /* busLocation.png */; };
 		01A429B71A3D5F4500FE1F20 /* myLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429B61A3D5F4500FE1F20 /* myLocation.png */; };
 		01A429C91A3D749700FE1F20 /* bgList.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01A429C81A3D749700FE1F20 /* bgList.jpg */; };
+		01A429CC1A3D76E400FE1F20 /* BusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429CB1A3D76E400FE1F20 /* BusInfoViewController.m */; };
 		01B14E121A3899CD0070961C /* BusLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E111A3899CD0070961C /* BusLocationAnnotation.m */; };
 		01B14E151A38A9DF0070961C /* MyLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E141A38A9DF0070961C /* MyLocationAnnotation.m */; };
 		01B14E1F1A38C0C30070961C /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E1E1A38C0C30070961C /* DOPDropDownMenu.m */; };
@@ -137,6 +138,8 @@
 		01A429B41A3D5CF800FE1F20 /* busLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busLocation.png; sourceTree = "<group>"; };
 		01A429B61A3D5F4500FE1F20 /* myLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myLocation.png; sourceTree = "<group>"; };
 		01A429C81A3D749700FE1F20 /* bgList.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bgList.jpg; sourceTree = "<group>"; };
+		01A429CA1A3D76E400FE1F20 /* BusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusInfoViewController.h; sourceTree = "<group>"; };
+		01A429CB1A3D76E400FE1F20 /* BusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusInfoViewController.m; sourceTree = "<group>"; };
 		01B14E101A3899CD0070961C /* BusLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusLocationAnnotation.h; sourceTree = "<group>"; };
 		01B14E111A3899CD0070961C /* BusLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusLocationAnnotation.m; sourceTree = "<group>"; };
 		01B14E131A38A9DF0070961C /* MyLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocationAnnotation.h; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				002F220A199FBC9D00EE889C /* ShuttleBusViewController.m */,
 				01B850841A34D190008A2DF2 /* SettingViewController.h */,
 				01B850851A34D190008A2DF2 /* SettingViewController.m */,
+				01A429CA1A3D76E400FE1F20 /* BusInfoViewController.h */,
+				01A429CB1A3D76E400FE1F20 /* BusInfoViewController.m */,
 				002F2206199FB54000EE889C /* SideMenuUtil.h */,
 				002F2207199FB54000EE889C /* SideMenuUtil.m */,
 				002F221519A09B7F00EE889C /* MarkPoint.h */,
@@ -546,6 +551,7 @@
 				002F220B199FBC9D00EE889C /* ShuttleBusViewController.m in Sources */,
 				0138A9821A360F440010FF87 /* RestRequestor.m in Sources */,
 				002F21C6199F031B00EE889C /* AppDelegate.m in Sources */,
+				01A429CC1A3D76E400FE1F20 /* BusInfoViewController.m in Sources */,
 				002F2205199FB29600EE889C /* HomeViewController.m in Sources */,
 				01A429B31A3CB05000FE1F20 /* ShuttleAPI.m in Sources */,
 				002F220E199FBFCA00EE889C /* MenuListCell.m in Sources */,
