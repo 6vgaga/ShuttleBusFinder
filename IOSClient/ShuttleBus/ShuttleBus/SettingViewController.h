@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "IRevealControllerProperty.h"
+#import "DOPDropDownMenu.h"
 
-@interface SettingViewController : UIViewController <IRevealControllerProperty, UITextFieldDelegate>
+@interface SettingViewController : UIViewController <IRevealControllerProperty, UITextFieldDelegate, DOPDropDownMenuDataSource, DOPDropDownMenuDelegate>
+{
+}
+
+@property NSArray* busMenuArray;
 @property (weak, nonatomic) IBOutlet UISwitch *switchClickToUpload;
 @property (weak, nonatomic) IBOutlet UITextField *frequenceText;
 @property (weak, nonatomic) IBOutlet UILabel *fakeLineMenu;
+@property NSString* selectLine;
+@property (weak, nonatomic) IBOutlet UILabel *currentLine;
 
 @end
