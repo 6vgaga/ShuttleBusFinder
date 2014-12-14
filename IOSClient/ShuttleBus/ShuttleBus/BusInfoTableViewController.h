@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BusInfoTableViewCell.h"
+#import "RestRequestor.h"
 
-@interface BusInfoTableViewController : UITableViewController<JASwipeCellDelegate>
+@interface BusInfoTableViewController : UITableViewController<JASwipeCellDelegate, AsynCallCompletionNotify>
 @property (nonatomic, strong) NSMutableArray *tableData;
 @property NSString* busLine;
+@property NSArray* busScheduleArray;
 
 @end

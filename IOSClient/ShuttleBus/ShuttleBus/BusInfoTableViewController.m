@@ -8,6 +8,7 @@
 
 #import "BusInfoTableViewController.h"
 #import "JAActionButton.h"
+#import "ScheduleMapViewController.h"
 
 #define kBusInfoTableViewCellReuseIdentifier     @"BusInfoTableViewCellIdentifier"
 
@@ -24,6 +25,7 @@
 
 @synthesize tableData;
 @synthesize busLine;
+@synthesize busScheduleArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,9 +33,7 @@
     
     self.title = self.busLine;
     
-    [self resetData];
-    
-    [self.tableView registerClass:[BusInfoTableViewCell class] forCellReuseIdentifier:kBusInfoTableViewCellReuseIdentifier];
+    [self queryBusSchedule];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,56 +51,61 @@
 }
 */
 
+- (void)queryBusSchedule
+{
+    void (^callbackFun) (NSArray*,bool)= ^ (NSArray* arrayObject,bool isError) {
+        if (!isError)
+        {
+            if (arrayObject != nil && arrayObject.count > 0)
+            {
+                self.busScheduleArray = arrayObject;
+                [self resetData];
+            }
+        }
+        else
+            NSLog(@"can't get ShuttleSchedule,err=", arrayObject.firstObject);
+    };
+    
+    RestRequestor * req= [[RestRequestor alloc] init];
+    [req getBusLineSchedule:self.busLine  callback:callbackFun];
+}
+
 - (void)resetData
 {
-    self.tableData = [[NSMutableArray alloc] initWithCapacity:10];
-    [self.tableData addObjectsFromArray:@[@"Swipe left all the way",
-                                          @"Swipe right all they way",
-                                          @"Swipe left - click More button",
-                                          @"Swipe left - click Flag button",
-                                          @"Swipe left - click Archive button",
-                                          @"Swipe right - click Mark as unread button",
-                                          @"Swipe right - click Delete button"]];
+    self.tableData = [[NSMutableArray alloc] init];
+    for (BusScheduleStopInfo* info in self.busScheduleArray) {
+        NSString *titile = [NSString stringWithFormat:@"%@, %@",info->name,info->time];
+        [self.tableData addObject:titile];
+    }
     
     [self.tableView reloadData];
+    
+    [self.tableView registerClass:[BusInfoTableViewCell class] forCellReuseIdentifier:kBusInfoTableViewCellReuseIdentifier];
 }
 
 - (NSArray *)leftButtons
 {
-    __typeof(self) __weak weakSelf = self;
-    JAActionButton *button1 = [JAActionButton actionButtonWithTitle:@"Delete" color:[UIColor redColor] handler:^(UIButton *actionButton, JASwipeCell*cell) {
-        [cell completePinToTopViewAnimation];
-        [weakSelf leftMostButtonSwipeCompleted:cell];
-        NSLog(@"Left Button: Delete Pressed");
-    }];
-    
-    JAActionButton *button2 = [JAActionButton actionButtonWithTitle:@"Mark as unread" color:kUnreadButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mark As Unread" message:@"Done!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        NSLog(@"Left Button: Mark as unread Pressed");
-    }];
-    
-    return @[button1, button2];
+    return nil;
 }
 
 - (NSArray *)rightButtons
 {
     __typeof(self) __weak weakSelf = self;
-    JAActionButton *button1 = [JAActionButton actionButtonWithTitle:@"Archive" color:kArchiveButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
+    JAActionButton *button1 = [JAActionButton actionButtonWithTitle:@"View" color:kArchiveButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
         [cell completePinToTopViewAnimation];
         [weakSelf rightMostButtonSwipeCompleted:cell];
-        NSLog(@"Right Button: Archive Pressed");
+        NSLog(@"Right Button: View Pressed");
     }];
     
-    JAActionButton *button2 = [JAActionButton actionButtonWithTitle:@"Flag" color:kFlagButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag" message:@"Flag pressed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    JAActionButton *button2 = [JAActionButton actionButtonWithTitle:@"On Time" color:kFlagButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag" message:@"Have voted!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
-        NSLog(@"Right Button: Flag Pressed");
+        NSLog(@"Right Button: On Time Pressed");
     }];
-    JAActionButton *button3 = [JAActionButton actionButtonWithTitle:@"More" color:kMoreButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"More Options" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Option 1" otherButtonTitles:@"Option 2",nil];
-        [sheet showInView:weakSelf.view];
-        NSLog(@"Right Button: More Pressed");
+    JAActionButton *button3 = [JAActionButton actionButtonWithTitle:@"Late" color:kMoreButtonColor handler:^(UIButton *actionButton, JASwipeCell*cell) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Flag" message:@"Have voted!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        NSLog(@"Right Button: Late Pressed");
     }];
     
     return @[button1, button2, button3];
@@ -134,7 +139,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 50;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,7 +157,6 @@
         if (visibleCell != cell) {
             [visibleCell resetContainerView];
         }
-        
     }
 }
 
@@ -164,28 +168,20 @@
         if (visibleCell != cell) {
             [visibleCell resetContainerView];
         }
-        
     }
 }
 
 - (void)leftMostButtonSwipeCompleted:(JASwipeCell *)cell
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.tableData removeObjectAtIndex:indexPath.row];
     
-    [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
 }
 
 - (void)rightMostButtonSwipeCompleted:(JASwipeCell *)cell
 {
+    ScheduleMapViewController* svc = [self.storyboard instantiateViewControllerWithIdentifier:@"ScheduleMapViewController"];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.tableData removeObjectAtIndex:indexPath.row];
-    
-    [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
+    svc.info = [self.busScheduleArray objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:svc animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate methods

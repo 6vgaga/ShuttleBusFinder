@@ -321,6 +321,32 @@
             </objects>
             <point key="canvasLocation" x="963" y="1946"/>
         </scene>
+        <!--Schedule Map View Controller-->
+        <scene sceneID="VDy-Dn-rgX">
+            <objects>
+                <viewController storyboardIdentifier="ScheduleMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="13R-ZI-Es9" userLabel="Schedule Map View Controller" customClass="ScheduleMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JPf-2X-dEm"/>
+                        <viewControllerLayoutGuide type="bottom" id="nJh-go-WRC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3WY-0x-Odo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DJa-D1-fyK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="DJa-D1-fyK" id="nzc-g4-hSL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AlN-UB-J1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="963" y="2593"/>
+        </scene>
         <!--Setting Navigation Controller-->
         <scene sceneID="dwe-iU-OGI">
             <objects>
