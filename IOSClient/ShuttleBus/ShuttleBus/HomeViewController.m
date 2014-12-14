@@ -127,7 +127,8 @@
 
 -(void)doButton:(UIButton *)sender
 {
-    BusInfoViewController* svc=[[BusInfoViewController alloc]init];
+    //BusInfoViewController* svc=[[BusInfoViewController alloc]init];
+    BusInfoViewController* svc = [self.storyboard instantiateViewControllerWithIdentifier:@"BusInfoViewController"];
     [self.navigationController pushViewController:svc animated:YES];
 }
 

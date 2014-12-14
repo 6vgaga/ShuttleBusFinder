@@ -51,6 +51,12 @@
 		01A429B71A3D5F4500FE1F20 /* myLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429B61A3D5F4500FE1F20 /* myLocation.png */; };
 		01A429C91A3D749700FE1F20 /* bgList.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01A429C81A3D749700FE1F20 /* bgList.jpg */; };
 		01A429CC1A3D76E400FE1F20 /* BusInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429CB1A3D76E400FE1F20 /* BusInfoViewController.m */; };
+		01A429D21A3D7F8200FE1F20 /* JAActionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429CF1A3D7F8200FE1F20 /* JAActionButton.m */; };
+		01A429D31A3D7F8200FE1F20 /* JASwipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429D11A3D7F8200FE1F20 /* JASwipeCell.m */; };
+		01A429D61A3D8A2700FE1F20 /* BusInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429D51A3D8A2700FE1F20 /* BusInfoTableViewCell.m */; };
+		01A429E11A3D8AC000FE1F20 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429D91A3D8AC000FE1F20 /* ALView+PureLayout.m */; };
+		01A429E21A3D8AC000FE1F20 /* NSArray+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429DB1A3D8AC000FE1F20 /* NSArray+PureLayout.m */; };
+		01A429E31A3D8AC000FE1F20 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429DD1A3D8AC000FE1F20 /* NSLayoutConstraint+PureLayout.m */; };
 		01B14E121A3899CD0070961C /* BusLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E111A3899CD0070961C /* BusLocationAnnotation.m */; };
 		01B14E151A38A9DF0070961C /* MyLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E141A38A9DF0070961C /* MyLocationAnnotation.m */; };
 		01B14E1F1A38C0C30070961C /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E1E1A38C0C30070961C /* DOPDropDownMenu.m */; };
@@ -140,6 +146,21 @@
 		01A429C81A3D749700FE1F20 /* bgList.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bgList.jpg; sourceTree = "<group>"; };
 		01A429CA1A3D76E400FE1F20 /* BusInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusInfoViewController.h; sourceTree = "<group>"; };
 		01A429CB1A3D76E400FE1F20 /* BusInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusInfoViewController.m; sourceTree = "<group>"; };
+		01A429CE1A3D7F8200FE1F20 /* JAActionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAActionButton.h; sourceTree = "<group>"; };
+		01A429CF1A3D7F8200FE1F20 /* JAActionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAActionButton.m; sourceTree = "<group>"; };
+		01A429D01A3D7F8200FE1F20 /* JASwipeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JASwipeCell.h; sourceTree = "<group>"; };
+		01A429D11A3D7F8200FE1F20 /* JASwipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JASwipeCell.m; sourceTree = "<group>"; };
+		01A429D41A3D8A2700FE1F20 /* BusInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusInfoTableViewCell.h; sourceTree = "<group>"; };
+		01A429D51A3D8A2700FE1F20 /* BusInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusInfoTableViewCell.m; sourceTree = "<group>"; };
+		01A429D81A3D8AC000FE1F20 /* ALView+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ALView+PureLayout.h"; sourceTree = "<group>"; };
+		01A429D91A3D8AC000FE1F20 /* ALView+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ALView+PureLayout.m"; sourceTree = "<group>"; };
+		01A429DA1A3D8AC000FE1F20 /* NSArray+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PureLayout.h"; sourceTree = "<group>"; };
+		01A429DB1A3D8AC000FE1F20 /* NSArray+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PureLayout.m"; sourceTree = "<group>"; };
+		01A429DC1A3D8AC000FE1F20 /* NSLayoutConstraint+PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+PureLayout.h"; sourceTree = "<group>"; };
+		01A429DD1A3D8AC000FE1F20 /* NSLayoutConstraint+PureLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+PureLayout.m"; sourceTree = "<group>"; };
+		01A429DE1A3D8AC000FE1F20 /* PureLayout+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PureLayout+Internal.h"; sourceTree = "<group>"; };
+		01A429DF1A3D8AC000FE1F20 /* PureLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayout.h; sourceTree = "<group>"; };
+		01A429E01A3D8AC000FE1F20 /* PureLayoutDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureLayoutDefines.h; sourceTree = "<group>"; };
 		01B14E101A3899CD0070961C /* BusLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusLocationAnnotation.h; sourceTree = "<group>"; };
 		01B14E111A3899CD0070961C /* BusLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusLocationAnnotation.m; sourceTree = "<group>"; };
 		01B14E131A38A9DF0070961C /* MyLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocationAnnotation.h; sourceTree = "<group>"; };
@@ -189,6 +210,8 @@
 		002F21A9199F031B00EE889C = {
 			isa = PBXGroup;
 			children = (
+				01A429D71A3D8AC000FE1F20 /* PureLayout */,
+				01A429CD1A3D7F8200FE1F20 /* JASwipeCell */,
 				01A429A31A3CA15800FE1F20 /* CDSideBarController */,
 				01B14E1C1A38C0C30070961C /* DOPDropDownMenu */,
 				01B14E0F1A3898C60070961C /* Annotation */,
@@ -241,6 +264,8 @@
 				01B850851A34D190008A2DF2 /* SettingViewController.m */,
 				01A429CA1A3D76E400FE1F20 /* BusInfoViewController.h */,
 				01A429CB1A3D76E400FE1F20 /* BusInfoViewController.m */,
+				01A429D41A3D8A2700FE1F20 /* BusInfoTableViewCell.h */,
+				01A429D51A3D8A2700FE1F20 /* BusInfoTableViewCell.m */,
 				002F2206199FB54000EE889C /* SideMenuUtil.h */,
 				002F2207199FB54000EE889C /* SideMenuUtil.m */,
 				002F221519A09B7F00EE889C /* MarkPoint.h */,
@@ -355,6 +380,33 @@
 				01A429A51A3CA15800FE1F20 /* CDSideBarController.m */,
 			);
 			path = CDSideBarController;
+			sourceTree = "<group>";
+		};
+		01A429CD1A3D7F8200FE1F20 /* JASwipeCell */ = {
+			isa = PBXGroup;
+			children = (
+				01A429CE1A3D7F8200FE1F20 /* JAActionButton.h */,
+				01A429CF1A3D7F8200FE1F20 /* JAActionButton.m */,
+				01A429D01A3D7F8200FE1F20 /* JASwipeCell.h */,
+				01A429D11A3D7F8200FE1F20 /* JASwipeCell.m */,
+			);
+			path = JASwipeCell;
+			sourceTree = "<group>";
+		};
+		01A429D71A3D8AC000FE1F20 /* PureLayout */ = {
+			isa = PBXGroup;
+			children = (
+				01A429D81A3D8AC000FE1F20 /* ALView+PureLayout.h */,
+				01A429D91A3D8AC000FE1F20 /* ALView+PureLayout.m */,
+				01A429DA1A3D8AC000FE1F20 /* NSArray+PureLayout.h */,
+				01A429DB1A3D8AC000FE1F20 /* NSArray+PureLayout.m */,
+				01A429DC1A3D8AC000FE1F20 /* NSLayoutConstraint+PureLayout.h */,
+				01A429DD1A3D8AC000FE1F20 /* NSLayoutConstraint+PureLayout.m */,
+				01A429DE1A3D8AC000FE1F20 /* PureLayout+Internal.h */,
+				01A429DF1A3D8AC000FE1F20 /* PureLayout.h */,
+				01A429E01A3D8AC000FE1F20 /* PureLayoutDefines.h */,
+			);
+			path = PureLayout;
 			sourceTree = "<group>";
 		};
 		01B14E0F1A3898C60070961C /* Annotation */ = {
@@ -541,9 +593,11 @@
 				002F221719A09B7F00EE889C /* MarkPoint.m in Sources */,
 				002F21F7199F137E00EE889C /* GHSidebarSearchViewController.m in Sources */,
 				01B14E121A3899CD0070961C /* BusLocationAnnotation.m in Sources */,
+				01A429E11A3D8AC000FE1F20 /* ALView+PureLayout.m in Sources */,
 				01B850861A34D190008A2DF2 /* SettingViewController.m in Sources */,
 				002F2208199FB54000EE889C /* SideMenuUtil.m in Sources */,
 				002F21F6199F137E00EE889C /* GHRevealViewController.m in Sources */,
+				01A429D21A3D7F8200FE1F20 /* JAActionButton.m in Sources */,
 				002F21CC199F031B00EE889C /* ViewController.m in Sources */,
 				01B14E1F1A38C0C30070961C /* DOPDropDownMenu.m in Sources */,
 				0138A9831A360F440010FF87 /* ShareObject.m in Sources */,
@@ -555,9 +609,13 @@
 				002F2205199FB29600EE889C /* HomeViewController.m in Sources */,
 				01A429B31A3CB05000FE1F20 /* ShuttleAPI.m in Sources */,
 				002F220E199FBFCA00EE889C /* MenuListCell.m in Sources */,
+				01A429D61A3D8A2700FE1F20 /* BusInfoTableViewCell.m in Sources */,
 				01B14E151A38A9DF0070961C /* MyLocationAnnotation.m in Sources */,
+				01A429D31A3D7F8200FE1F20 /* JASwipeCell.m in Sources */,
 				01A429A61A3CA15800FE1F20 /* CDSideBarController.m in Sources */,
+				01A429E31A3D8AC000FE1F20 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				002F21C2199F031B00EE889C /* main.m in Sources */,
+				01A429E21A3D8AC000FE1F20 /* NSArray+PureLayout.m in Sources */,
 				0138A9811A360F440010FF87 /* ClientSetting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

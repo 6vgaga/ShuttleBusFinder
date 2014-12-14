@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusInfoTableViewCell.h"
 
-@interface BusInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface BusInfoViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,JASwipeCellDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *tableData;
 
 @end
