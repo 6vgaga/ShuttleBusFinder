@@ -26,6 +26,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
     userName.delegate = self;
     password.delegate = self;
+    
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    delegate.clickUpload = false;
 }
 
 - (void)viewDidAppear:(BOOL)animated;     // Called when the view has been fully transitioned onto the screen. Default does nothing

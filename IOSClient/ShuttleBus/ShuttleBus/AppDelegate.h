@@ -14,5 +14,6 @@
 
 @property NSString* userName;
 @property NSString* lineName;
+@property bool clickUpload;
 
 @end

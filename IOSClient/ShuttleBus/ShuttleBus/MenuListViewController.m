@@ -208,6 +208,7 @@
     [_cellInfos addObject:infoArray];
     [_cellInfos addObject:
      @[
+       @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Setting", @"")},
        @{kSidebarCellImageKey: [UIImage imageNamed:@"user.png"], kSidebarCellTextKey: NSLocalizedString(@"Logout", @"")},
        ]
      ];
@@ -215,6 +216,7 @@
     [_controllers addObject:ctlArray];
     [_controllers addObject:
      @[
+       [self.storyboard instantiateViewControllerWithIdentifier:@"SettingNavigationController"],
        @"logout",
        ]
      ];

@@ -38,11 +38,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSArray *imageList = @[[UIImage imageNamed:@"menuChat.png"], [UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"], [UIImage imageNamed:@"menuClose.png"]];
+    /*NSArray *imageList = @[[UIImage imageNamed:@"menuChat.png"], [UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"], [UIImage imageNamed:@"menuClose.png"]];
     sideBar = [[CDSideBarController alloc] initWithImages:imageList withMenuButton:self.configButton];
     sideBar.delegate = self;
     
-    [sideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(self.view.frame.size.width - 70, 0)];
+    [sideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(self.view.frame.size.width - 70, 0)];*/
     
     [self.mapView setDelegate:self];
     [self.mapView setShowsUserLocation:YES];
@@ -58,7 +58,8 @@
     // Initialize some params;
     self.busScheduleArray = nil;
     
-    self.lock = [[NSLock alloc] init];
+    UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+    [self.mapView addGestureRecognizer:mTap];
 }
 
 - (void)viewDidAppear:(BOOL)animated     // Called when the view has been fully transitioned onto the screen. Default does nothing
@@ -371,5 +372,13 @@
 - (void)menuButtonClicked:(int)index
 {
     // Execute what ever you want
+}
+
+- (void)tapPress:(UIGestureRecognizer*)gestureRecognizer
+{
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];//这里touchPoint是点击的某点在地图控件中的位置
+    CLLocationCoordinate2D touchMapCoordinate =
+    [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];//这里touchMapCoordinate就是该点的经纬度了
+    NSLog(@"Click into Map %f %f", touchMapCoordinate.longitude, touchMapCoordinate.latitude);
 }
 @end

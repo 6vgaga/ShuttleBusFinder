@@ -10,7 +10,7 @@
 
 @implementation AppDelegate
 
-@synthesize userName, lineName;
+@synthesize userName, lineName, clickUpload;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
