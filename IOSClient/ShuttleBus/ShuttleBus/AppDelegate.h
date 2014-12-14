@@ -15,5 +15,6 @@
 @property NSString* userName;
 @property NSString* lineName;
 @property bool clickUpload;
+@property NSArray* busLineArry;
 
 @end

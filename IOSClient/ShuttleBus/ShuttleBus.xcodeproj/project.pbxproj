@@ -49,6 +49,7 @@
 		01A429B31A3CB05000FE1F20 /* ShuttleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A429B21A3CB05000FE1F20 /* ShuttleAPI.m */; };
 		01A429B51A3D5CF800FE1F20 /* busLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429B41A3D5CF800FE1F20 /* busLocation.png */; };
 		01A429B71A3D5F4500FE1F20 /* myLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 01A429B61A3D5F4500FE1F20 /* myLocation.png */; };
+		01A429C91A3D749700FE1F20 /* bgList.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01A429C81A3D749700FE1F20 /* bgList.jpg */; };
 		01B14E121A3899CD0070961C /* BusLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E111A3899CD0070961C /* BusLocationAnnotation.m */; };
 		01B14E151A38A9DF0070961C /* MyLocationAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E141A38A9DF0070961C /* MyLocationAnnotation.m */; };
 		01B14E1F1A38C0C30070961C /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B14E1E1A38C0C30070961C /* DOPDropDownMenu.m */; };
@@ -135,6 +136,7 @@
 		01A429B21A3CB05000FE1F20 /* ShuttleAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleAPI.m; sourceTree = "<group>"; };
 		01A429B41A3D5CF800FE1F20 /* busLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busLocation.png; sourceTree = "<group>"; };
 		01A429B61A3D5F4500FE1F20 /* myLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myLocation.png; sourceTree = "<group>"; };
+		01A429C81A3D749700FE1F20 /* bgList.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bgList.jpg; sourceTree = "<group>"; };
 		01B14E101A3899CD0070961C /* BusLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusLocationAnnotation.h; sourceTree = "<group>"; };
 		01B14E111A3899CD0070961C /* BusLocationAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusLocationAnnotation.m; sourceTree = "<group>"; };
 		01B14E131A38A9DF0070961C /* MyLocationAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocationAnnotation.h; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		002F21BC199F031B00EE889C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01A429C81A3D749700FE1F20 /* bgList.jpg */,
 				01A429B61A3D5F4500FE1F20 /* myLocation.png */,
 				01A429B41A3D5CF800FE1F20 /* busLocation.png */,
 				01A429A71A3CA16F00FE1F20 /* menuChat.png */,
@@ -477,6 +480,7 @@
 				01A429B71A3D5F4500FE1F20 /* myLocation.png in Resources */,
 				01B783FD1A223C3B00DCA563 /* morning.png in Resources */,
 				01B784011A22406900DCA563 /* person.png in Resources */,
+				01A429C91A3D749700FE1F20 /* bgList.jpg in Resources */,
 				01A429B01A3CA16F00FE1F20 /* menuUsers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -58,6 +58,9 @@
 {
     if (arrayObject == nil) return;
     
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    delegate.busLineArry = [arrayObject copy];
+    
     NSMutableArray* tempArray = [[NSMutableArray alloc] init];
     [tempArray addObject: NSLocalizedString(@"Select Line", @"Select Line")];
     for (BusInfo* info in arrayObject) {

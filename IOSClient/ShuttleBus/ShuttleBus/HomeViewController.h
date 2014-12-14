@@ -10,6 +10,9 @@
 #import "IRevealControllerProperty.h"
 #import "RestRequestor.h"
 
-@interface HomeViewController : UIViewController <IRevealControllerProperty, AsynCallCompletionNotify>
+@interface HomeViewController : UIViewController <IRevealControllerProperty, AsynCallCompletionNotify, UITableViewDataSource,UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property NSArray* titleDataArray;
 
 @end
