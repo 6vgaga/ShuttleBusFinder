@@ -94,7 +94,7 @@
         self.navigationItem.title = self.busInfo->busLine;
     }
     
-    /*if ([delegate.lineName isEqualToString:self.busInfo->busLine])
+    if ([delegate.lineName isEqualToString:self.busInfo->busLine])
     {
         if (delegate.timerInterval != self.innerTimerInterval)
         {
@@ -119,7 +119,7 @@
                                                          repeats:YES];
             [self.timer fire];
         }
-    }*/
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
