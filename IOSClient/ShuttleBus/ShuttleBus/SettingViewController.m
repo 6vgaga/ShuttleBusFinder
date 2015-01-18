@@ -137,6 +137,7 @@
 - (IBAction)applyYourLine:(id)sender {
     AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     delegate.lineName = self.selectLine;
+    self.currentLine.text = delegate.lineName;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

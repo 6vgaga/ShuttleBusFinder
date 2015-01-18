@@ -71,14 +71,19 @@
 
 - (void)viewDidAppear:(BOOL)animated     // Called when the view has been fully transitioned onto the screen. Default does nothing
 {
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if (![delegate.lineName isEqualToString:self.busInfo->busLine])
+    {
+        self.busLocationArray = nil;
+        [self markBusLocation];
+    }
+    
     if (self.busScheduleArray == nil)
     {
         [self queryBusSchedule];
         [self displayBusInfo];
         self.navigationItem.title = self.busInfo->busLine;
     }
-    
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     
     if ([delegate.lineName isEqualToString:self.busInfo->busLine])
     {
@@ -145,8 +150,8 @@
 - (void)markBusLocation
 {
     [self.mapView removeAnnotations: [self.mapView annotations]];
-    
-    if (self.busLocationArray != nil && self.displayLocation == true)
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    if (self.busLocationArray != nil && self.displayLocation == true && [delegate.lineName isEqualToString:self.busInfo->busLine])
     {
         for (BusLocationInfo* info in self.busLocationArray) {
             CLLocation *loc = [[CLLocation alloc]initWithLatitude:info->latitude longitude:info->longitude];
