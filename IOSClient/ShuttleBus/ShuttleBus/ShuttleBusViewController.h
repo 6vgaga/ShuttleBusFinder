@@ -38,4 +38,6 @@
 
 @property(nonatomic, strong) NSTimer *timer;
 
+@property (nonatomic,retain)CLLocationManager* locationManager;
+
 @end

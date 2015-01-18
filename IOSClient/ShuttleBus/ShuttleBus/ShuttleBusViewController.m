@@ -26,6 +26,7 @@
 @synthesize displaySchedule;
 @synthesize displayLocation;
 @synthesize innerTimerInterval;
+@synthesize locationManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,11 +54,19 @@
     
     [self.mapView setDelegate:self];
     [self.mapView setShowsUserLocation:YES];
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];//创建位置管理器
-    locationManager.delegate=self;//设置代理
-    locationManager.desiredAccuracy=kCLLocationAccuracyBest;//指定需要的精度级别
-    locationManager.distanceFilter=kCLDistanceFilterNone;//设置距离筛选器
-    [locationManager startUpdatingLocation];//启动位置管理器
+    self.locationManager = [[CLLocationManager alloc] init];//创建位置管理器
+    self.locationManager.delegate=self;//设置代理
+    self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;//指定需要的精度级别
+    self.locationManager.distanceFilter=kCLDistanceFilterNone;//设置距离筛选器
+    [self.locationManager startUpdatingLocation];//启动位置管理器
+    
+    double version = [[UIDevice currentDevice].systemVersion doubleValue];
+    if (version >= 8.0) {
+        //使用期间
+        //[self.locationManager requestWhenInUseAuthorization];
+        //始终
+        [self.locationManager requestAlwaysAuthorization];
+    }
     
     [mapView setZoomEnabled:YES];
     [mapView setScrollEnabled:YES];
@@ -85,7 +94,7 @@
         self.navigationItem.title = self.busInfo->busLine;
     }
     
-    if ([delegate.lineName isEqualToString:self.busInfo->busLine])
+    /*if ([delegate.lineName isEqualToString:self.busInfo->busLine])
     {
         if (delegate.timerInterval != self.innerTimerInterval)
         {
@@ -110,7 +119,7 @@
                                                          repeats:YES];
             [self.timer fire];
         }
-    }
+    }*/
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -272,6 +281,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+            if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
+            {
+                [self.locationManager requestWhenInUseAuthorization];
+            }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation{

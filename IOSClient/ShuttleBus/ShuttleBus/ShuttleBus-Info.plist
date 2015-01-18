@@ -24,6 +24,10 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Please click "Yes"</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please click "Yes"</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
